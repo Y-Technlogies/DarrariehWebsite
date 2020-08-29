@@ -1,0 +1,94 @@
+body {
+    background-color: #f2f2f2!important;
+    font: 400 14px/1.5 SF Pro Text,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+}
+
+.product-info, .details{
+    padding: 13px;
+}
+.product-info span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ff4443;
+}
+
+.product-description {
+    font-size: .9rem;
+    font-weight: 400;
+    color: #222;
+}
+
+.product-description .product-id {
+    font-size: .75rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.details span{
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+}
+
+.table td {
+    padding: 5px 3px 5px 4.8px!important;
+}
+
+.table tbody {
+    font-size: .80rem;
+    font-family: SFProText-Regular,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    color: #666666;
+    line-height: 1.5rem;
+}
+
+
+#navbar ul {
+    width: -webkit-fill-available;
+}
+
+.shop ,.cart{
+    font-size: .7rem;
+}
+
+.add-to-cart {
+    width: 100%;
+    background-color: #fedb43;
+    font-weight: 500;
+    font-family: SFProText-Regular,Helvetica,Arial,sans-serif;
+    color: #666;
+    font-size: .95rem;
+}
+
+.card-body {
+    padding: 7px!important;
+}
+
+.two-line {
+    height: 2rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    color: #999;
+    font-size: .80rem;
+    line-height: 1rem;
+}
+
+.card-price {
+    color: #333;
+    font-size: .85rem;
+    line-height: .95rem;
+    font-weight: 700;
+}
+
+.card-columns {
+
+    margin-right: -7px;
+    margin-left: -7px;
+    margin-top: 7px;
+    column-count: 2;
+    column-gap: 0.5rem;
+    display: inline-block;
+}

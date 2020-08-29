@@ -14,5 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('product.index');
+});
+
+Route::resource('/product','ProductController');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });
