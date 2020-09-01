@@ -15,4 +15,10 @@ class ProductController extends Controller
 
         return view('product.index',compact('products'));
     }
+
+    public function show(Product $product)
+    {
+        $products = Product::all();
+        return view('product.view',compact('product', 'products'));
+    }
 }

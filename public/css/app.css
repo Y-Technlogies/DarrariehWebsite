@@ -92,3 +92,68 @@ body {
     column-gap: 0.5rem;
     display: inline-block;
 }
+
+.btn-submit {
+    background-color: #fedb43;
+    font-weight: 500;
+    font-family: SFProText-Regular,Helvetica,Arial,sans-serif;
+    color: #666;
+    font-size: .95rem;
+}
+
+.cart-count {
+    background: #ff4443;
+    height: 15px;
+    width: 15px;
+    top: 3px;
+    left: 112px;
+    border-radius: 10px;
+}
+
+.cart-count span {
+    font-family: SFProText-Regular;
+    font-size: .8rem;
+    font-weight: 400;
+    color: #fff;
+    position: absolute;
+    left: 4px;
+}
+
+.total {
+    font-size: 1rem;
+}
+
+.total span {
+    font-weight: 600;
+    line-height: 2rem;
+    color : #ff4443;
+}
+
+.cart-list .one-line {
+    height: 1rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    color: #999;
+    font-size: .80rem;
+    line-height: 1rem;
+}
+
+.cart-list .style {
+    margin-top: .50rem;
+    width: 4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: .80rem;
+    color: #999;
+    font-weight: 400;
+    line-height: .90rem;
+}
+
+.cart-list .price {
+    color: #ff4443;
+    font-size: 1rem;
+    line-height: 2rem;
+}

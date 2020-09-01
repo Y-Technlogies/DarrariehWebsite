@@ -5,35 +5,43 @@
     <div class="row bg-white">
         <div id="carouselExampleIndicators" class="carousel slide col-sm-12 pl-0 pr-0" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                @foreach($product->getImage() as $key=>$image)
+                    @if($key === 0)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}" class="active"></li>
+                    @else
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"></li>
+                    @endif
+                @endforeach
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="https://via.placeholder.com/150" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/150" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="https://via.placeholder.com/150" alt="First slide">
-                </div>
+                @foreach($product->getImage() as $key=>$image)
+                    @if($key === 0)
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="{{ Voyager::image($image) }}">
+                        </div>
+                    @else
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="{{ Voyager::image($image) }}">
+                        </div>
+                    @endif
+                @endforeach
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            @if(sizeof($product->getImage()) > 1)
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            @endif
         </div>
 
         <div class="product-info">
-            <span>158.43 SAR</span>
-            <p class="product-description">Spliced dress printed mopping spring and autumn long-sleeved dress
-                <span class="product-id">18233841</span>
+            <span>{{ $product->price }}</span>
+            <p class="product-description">{{ $product->description }}
+                <span class="product-id">{{ $product->id }}</span>
             </p>
         </div>
     </div>
@@ -47,7 +55,7 @@
                     Season
                 </td>
                 <td>
-                    Autumn,Summer
+                   {{ $product->season }}
                 </td>
             </tr>
             <tr>
@@ -55,7 +63,7 @@
                     Style
                 </td>
                 <td>
-                    Arabic,Folk style,Western style
+                    {{ $product->style }}
                 </td>
             </tr>
             <tr>
@@ -63,7 +71,7 @@
                     Details
                 </td>
                 <td>
-                    Embroidery,Hollow out,Splicing
+                    {{ $product->details }}
                 </td>
             </tr>
             <tr>
@@ -71,7 +79,7 @@
                     Pattern
                 </td>
                 <td>
-                    Color splicing
+                    {{ $product->pattern }}
                 </td>
             </tr>
             <tr>
@@ -79,7 +87,7 @@
                     Clothing noun
                 </td>
                 <td>
-                    Dresses,Skirt
+                    {{ $product->clothing_noun }}
                 </td>
             </tr>
             <tr>
@@ -87,7 +95,7 @@
                     Applicable scene
                 </td>
                 <td>
-                    Festival,Leisure
+                    {{ $product->applicable_scene }}
                 </td>
             </tr>
             <tr>
@@ -95,7 +103,7 @@
                     Fabric
                 </td>
                 <td>
-                    Polyester
+                    {{ $product->fabric }}
                 </td>
             </tr>
             <tr>
@@ -103,7 +111,7 @@
                     Suitable age
                 </td>
                 <td>
-                    25-29 years old,30-34 years old
+                    {{ $product->suitable_age }}
                 </td>
             </tr>
             <tr>
@@ -111,7 +119,7 @@
                     Style
                 </td>
                 <td>
-                    Blue,Green,Purple,Red,Yellow
+                    {{ $product->color }}
                 </td>
             </tr>
             <tr>
@@ -119,7 +127,9 @@
                     Size
                 </td>
                 <td>
-                    M,L,XL,XXL
+                     @foreach(json_decode($product->size, true) as $size)
+                         {{ $size }}
+                         @endforeach
                 </td>
             </tr>
             </tbody>
@@ -128,7 +138,7 @@
 
     @include('partials.list')
 
-    @include('partials.bottom-nav')
+    @include('partials.bottom-nav', ['product' => $product])
 
     <div class="clearfix" style="height: 50px"></div>
 @stop
