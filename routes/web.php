@@ -1,5 +1,6 @@
 <?php
 
+use App\Customer;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 });
 
 Route::resource('/product','ProductController');
+Route::resource('/customer','CustomerController');
+
 Route::get('/cart/{id}',function ($id) {
 
     $product = Product::find($id);
@@ -31,20 +34,15 @@ Route::get('/cart/{id}',function ($id) {
 
 Route::post('/cart',function (Request $request) {
 
-    //$request->session()->forget('products');
-
-    $request->session()->reflash();
+    $request->session()->forget('products');
+    $product = [];
 
     if (!$request->session()->has('products')) {
-
-        $request->session()->put('products', $request->except('_token'));
-        $request->session()->put('products_count', 1);
-
-        return redirect()->route('product.show',$request->get('product_id'));
+        $product[0] = $request->except('_token');
+    } else {
+        $product = $request->session()->get('products');
+        $product[sizeof($product)] = $request->except('_token');
     }
-
-    $product = $request->session()->get('products');
-    $product[sizeof($product)] = $request->except('_token');
 
     $request->session()->put('products', $product);
     $request->session()->put('products_count', sizeof($product));
@@ -59,9 +57,12 @@ Route::get('/cart-list', function (){
     $products = Session::get('products');
     $total = 0;
 
+//    dd($products);
+
+
     foreach ($products as $key=>$product)
     {
-        $temp = Product::find($product['product_id']);
+        $temp = Product::find($products[$key]['product_id']);
         $products[$key]['description'] = $temp->description;
         $products[$key]['image'] = $temp->getImage()[0];
         $products[$key]['price'] = $temp->price;
@@ -103,6 +104,18 @@ Route::get('/checkout', function() {
 
 
 })->name('cart.checkout');
+
+Route::get('/invoice', function () {
+
+    $products = Session::get('products');
+    $customer = Customer::find(Session::get('customer_id'));
+
+    return view('cart.invoice', compact('products', 'customer'));
+});
+
+Route::get('/show-card', function () {
+   return view('card.getway');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
