@@ -35,8 +35,41 @@
 @section('content')
     <div class="page-content read container-fluid">
         <div class="row">
-            <div class="col-md-12">
-
+            <div class="col-md-8">
+                <div class="panel">
+                    <table class="table table-responsive">
+                        <thead>
+                            <th width="10%">Image</th>
+                            <th width="40%">Product</th>
+                            <th>Size</th>
+                            <th>Color</th>
+                            <th>Unite Price</th>
+                            <th>Quantity</th>
+                            <th>Line Total</th>
+                        </thead>
+                        <tbody>
+                            @foreach($orderLine as $order)
+                                <tr>
+                                    <td>
+                                    @php
+                                        $image = json_decode($order->images, true);
+                                    @endphp
+                                        <img class="img-responsive"
+                                             src="{{ filter_var($image[0], FILTER_VALIDATE_URL) ? $image[0] : Voyager::image($image[0]) }}">
+                                    </td>
+                                    <td><a href="{{ route('voyager.products.show', $order->product_id) }}">{{ $order->description }}</a></td>
+                                    <td>{{ $order->size }}</td>
+                                    <td>{{ $order->color }}</td>
+                                    <td>{{ $order->price }}</td>
+                                    <td>{{ $order->quantity }}</td>
+                                    <td>{{ $order->quantity * $order->price }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
                 <div class="panel panel-bordered" style="padding-bottom:5px;">
                     <!-- form start -->
                     @foreach($dataType->readRows as $row)
@@ -140,7 +173,7 @@
         </div>
     </div>
 
-    {{-- Single delete modal --}}
+     {{--Single delete modal--}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
