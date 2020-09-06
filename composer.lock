@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d73bbe4dc16ae7c394a9b3a520684eb7",
+    "content-hash": "a54be0b88cec09360e8139dba798fbf2",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -121,6 +121,50 @@
             "time": "2020-05-31T07:17:05+00:00"
         },
         {
+            "name": "bawes/myfatoorah-php",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BAWES/myfatoorah-php.git",
+                "reference": "6f5ff19a76578b00a7a6db28674224bccfc775ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BAWES/myfatoorah-php/zipball/6f5ff19a76578b00a7a6db28674224bccfc775ba",
+                "reference": "6f5ff19a76578b00a7a6db28674224bccfc775ba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "bawes\\myfatoorah\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Khalid Al-Mutawa",
+                    "email": "contact@bawes.net",
+                    "homepage": "http://bawes.net"
+                }
+            ],
+            "description": "MyFatoorah PHP Library",
+            "homepage": "https://myfatoorah.com/",
+            "keywords": [
+                "api",
+                "myfatoorah",
+                "payment processing"
+            ],
+            "time": "2018-11-01T09:37:58+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.1",
             "source": {
@@ -171,6 +215,56 @@
                 }
             ],
             "time": "2020-08-18T23:57:15+00:00"
+        },
+        {
+            "name": "checkout/checkout-php-api",
+            "version": "1.2.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/checkout/checkout-php-library.git",
+                "reference": "c0cc174baf1e0b93388f58b27c6e35f6fa17ea83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/checkout/checkout-php-library/zipball/c0cc174baf1e0b93388f58b27c6e35f6fa17ea83",
+                "reference": "c0cc174baf1e0b93388f58b27c6e35f6fa17ea83",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "com\\checkout\\": "com/checkout"
+                },
+                "psr-0": {
+                    "CheckoutApi_": "com/checkout/packages"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dhiraj Gangoosirdar",
+                    "email": "integration@checkout.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Checkout PHP API Library",
+            "homepage": "https://github.com/checkout/checkout-php-library",
+            "keywords": [
+                "CKO",
+                "GW3",
+                "checkout.com",
+                "checkoutcom",
+                "gateway",
+                "online payment",
+                "payment"
+            ],
+            "time": "2019-03-04T17:38:58+00:00"
         },
         {
             "name": "composer/ca-bundle",

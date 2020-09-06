@@ -34,7 +34,7 @@ Route::get('/cart/{id}',function ($id) {
 
 Route::post('/cart',function (Request $request) {
 
-    $request->session()->forget('products');
+//    $request->session()->forget('products');
     $product = [];
 
     if (!$request->session()->has('products')) {
@@ -57,9 +57,6 @@ Route::get('/cart-list', function (){
     $products = Session::get('products');
     $total = 0;
 
-//    dd($products);
-
-
     foreach ($products as $key=>$product)
     {
         $temp = Product::find($products[$key]['product_id']);
@@ -72,9 +69,6 @@ Route::get('/cart-list', function (){
     Session::put('total', $total);
     Session::put('products', $products);
     Session::put('products_count', sizeof($products));
-//    dd(Session::get('products'));
-
-//    dd(Session::all());
 
     return view('cart.list', compact('products'));
 
@@ -113,9 +107,13 @@ Route::get('/invoice', function () {
     return view('cart.invoice', compact('products', 'customer'));
 });
 
-Route::get('/show-card', function () {
-   return view('card.getway');
-});
+//Route::get('/show-card', function () {
+//   return view('card.getway');
+//});
+
+Route::get('/pay', 'PaymentController@pay')->name('pay');
+Route::get('/pay/success', 'PaymentController@success')->name('pay.success');
+Route::get('/pay/faild', 'PaymentController@faild')->name('pay.faild');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

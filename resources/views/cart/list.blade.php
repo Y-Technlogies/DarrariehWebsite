@@ -13,7 +13,7 @@
                     {{ $product['description'] }}
                 </p>
                 <p class="card-text style">
-                    {{ $product['product_size']}} , {{ $product['product_color']  }}
+                    {{ $product['product_size']}} , {{ array_key_exists('product_color', $product) ? $product['product_color'] : ''  }}
                 </p>
                 <p class="card-text card-text d-flex justify-content-between text-center">
                     <span class="price">{{ $product['price'] }}</span>
