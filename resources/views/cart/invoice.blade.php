@@ -54,7 +54,7 @@
                     Grand Total: <span class="pl-1">{{ Session::get('total') }}</span>
                 </li>
                 <li class="nav-item add-to-cart py-1">
-                    <a class="nav-link font-weight-bold" href="{{ url('/show-card') }}">Confirm Pay</a>
+                    <a class="nav-link font-weight-bold" href="{{ route('pay') }}">Confirm Pay</a>
                 </li>
             </ul>
         </div>

@@ -42,6 +42,6 @@ class OrderDetails extends AbstractAction
     public function getDefaultRoute()
     {
         // URL for action button when click
-        return route('voyager.order-lines.show', array("id"=>$this->data->{$this->data->getKeyName()}));
+        return route('voyager.orders.show', array("id"=>$this->data->{$this->data->getKeyName()}));
     }
 }

@@ -14,6 +14,8 @@
     </head>
     <body>
         <div class="container-fluid">
+            @include('partials.flash-message')
+
             @yield('content')
         </div>
 
