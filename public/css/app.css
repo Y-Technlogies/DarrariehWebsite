@@ -86,12 +86,28 @@ body {
 }
 
 .card-columns {
-    margin-right: -7px;
-    margin-left: -7px;
+    /* margin-right: -7px;
+    margin-left: -7px; */
     margin-top: 7px;
     /* column-count: 2; */
     column-gap: 0.5rem;
     /* display: inline-block; */
+}
+
+.maxWidth {
+    max-width: 400px;
+    margin: auto;
+}
+
+.maxWidthNav {
+    max-width: 430px;
+    margin: auto;
+}
+
+.maxWidthCard {
+    max-width: 420px;
+    margin: auto;
+    padding-right: 20px;
 }
 
 .card-columns a {
@@ -163,13 +179,13 @@ body {
     line-height: 2rem;
 }
 
-.customer-address .card-body{
-    font-size: .85rem;
+.customer-address .card-body {
+    font-size: 0.85rem;
     line-height: 1.4rem;
 }
 
 .invoice .card-body {
-    font-size: .75rem;
+    font-size: 0.75rem;
     line-height: 1.4rem;
 }
 
@@ -182,11 +198,11 @@ body {
 }
 
 .margin-fix {
-    margin-left:  -7px;
-    margin-right:  -7px;
+    margin-left: -7px;
+    margin-right: -7px;
 }
 
 .payment input {
-    font-size: .80rem;
+    font-size: 0.8rem;
     background-color: #e6e6e6;
 }

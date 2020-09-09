@@ -1,7 +1,8 @@
 @extends('welcome')
 
 @section('content')
-    <div class="border-bottom-0 card d-flex flex-row mt-3">
+    <div class="maxWidth">
+        <div class="border-bottom-0 card d-flex flex-row mt-3">
         <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
         <div class="card-body">
             <p class="card-text two-line mb-3">
@@ -43,5 +44,6 @@
                 <button class="btn btn-block btn-submit mb" type="submit">Confirm</button>
             </form>
         </div>
+    </div>
     </div>
 @stop
