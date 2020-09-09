@@ -181,6 +181,11 @@ body {
     margin-right:  -7px;
 }
 
+.margin-fix-full {
+    margin-left:  -15px;
+    margin-right:  -15px;
+}
+
 .payment input {
     font-size: .80rem;
     background-color: #e6e6e6;
