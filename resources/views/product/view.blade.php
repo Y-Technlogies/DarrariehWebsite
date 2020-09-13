@@ -136,11 +136,10 @@
             </tbody>
         </table>
     </div>
-</div>
+
     @include('partials.list')
 
     @include('partials.bottom-nav', ['product' => $product])
 
     <div class="clearfix" style="height: 50px"></div>
-    
 @stop

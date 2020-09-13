@@ -1,7 +1,6 @@
 @extends('welcome')
 
 @section('content')
-
     <div class="margin-fix">
         <div class="border-bottom-0 card d-flex flex-row mt-3">
             <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
