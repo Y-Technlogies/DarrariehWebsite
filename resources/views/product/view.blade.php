@@ -2,7 +2,6 @@
 
 @section('content')
 
-<div class="maxWidth">
     <div class="row bg-white">
         <div id="carouselExampleIndicators" class="carousel slide col-sm-12 pl-0 pr-0" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -136,11 +135,10 @@
             </tbody>
         </table>
     </div>
-</div>
+
     @include('partials.list')
 
     @include('partials.bottom-nav', ['product' => $product])
 
     <div class="clearfix" style="height: 50px"></div>
-    
 @stop
