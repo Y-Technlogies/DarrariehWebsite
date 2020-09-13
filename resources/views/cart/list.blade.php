@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
                 <li class="border-right nav-item p-2 text-left w-100 total">
-                  Total: <span class="pl-1">{{ Session::get('total') }}</span>
+                  {{ __('cart.Total') }}: <span class="pl-1">{{ Session::get('total') }}</span>
                 </li>
                 <li class="nav-item add-to-cart py-1">
                     @if(@count($products) > 0)
-                        <a class="nav-link font-weight-bold" href="{{ route('cart.checkout') }}">Checkout</a>
+                        <a class="nav-link font-weight-bold" href="{{ route('cart.checkout') }}">{{ __('cart.Checkout') }}</a>
                     @else
-                        <a class="nav-link font-weight-bold" href="{{ url('/') }}">Go to Home</a>
+                        <a class="nav-link font-weight-bold" href="{{ url('/') }}">{{ __('cart.Go_to_Home') }}</a>
                     @endif
                 </li>
             </ul>

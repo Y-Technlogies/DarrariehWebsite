@@ -37,10 +37,10 @@
                     @endforeach
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Quantity</label>
+                    <label for="exampleFormControlInput1">{{ __('cart.Quantity') }}</label>
                     <input type="number" name="quantity" class="form-control" placeholder="0">
                 </div>
-                <button class="btn btn-block btn-submit mb" type="submit">Confirm</button>
+                <button class="btn btn-block btn-submit mb" type="submit">{{ __('cart.Confirm') }}</button>
             </form>
         </div>
     </div>
