@@ -1,6 +1,7 @@
 <?php
 
 use App\Customer;
+use App\Http\Requests\CartRequest;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,7 @@ Route::get('/cart/{id}',function ($id) {
 
 })->name('cart.add');
 
-Route::post('/cart',function (Request $request) {
+Route::post('/cart',function (CartRequest $request) {
 
 //    $request->session()->forget('products');
     $product = [];
