@@ -1,4 +1,4 @@
-<div class="card-columns pt-2 maxWidthCard">
+<div class="card-columns pt-2">
     @foreach($products as $product)
     <a href="{{ route('product.show', $product) }}">
         <div class="card d-inline-block">

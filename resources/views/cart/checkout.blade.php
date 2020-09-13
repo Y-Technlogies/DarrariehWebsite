@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="row bg-white p-2 row">
+        @include('partials.frontend.validation')
         <form method="post" action="{{ route('customer.store') }}">
             {{ csrf_field() }}
             <div class="form-row">

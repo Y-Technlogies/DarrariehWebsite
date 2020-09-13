@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $customer = new Customer();
         $customer->first_name = $request->get('first_name');

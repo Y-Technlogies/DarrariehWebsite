@@ -3,7 +3,7 @@
 @section('content')
 
     @foreach($products as $key=>$product)
-        <div class="border-bottom-0 card d-flex flex-row mt-3 cart-list maxWidthCard">
+        <div class="border-bottom-0 card d-flex flex-row mt-3 cart-list margin-fix">
             <a href="{{ route('cart.remove', $key) }}" class="btn btn-danger h-25 m-1">
                 <i class="fa fa-trash"></i>
             </a>
@@ -23,7 +23,7 @@
         </div>
     @endforeach
 
-    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border maxWidthNav">
+    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border full-screen-fix">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
                 <li class="border-right nav-item p-2 text-left w-100 total">

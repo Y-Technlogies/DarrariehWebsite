@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="maxWidth">
+<div class="margin-fix">
     <div class="row bg-white">
         <div id="carouselExampleIndicators" class="carousel slide col-sm-12 pl-0 pr-0" data-ride="carousel">
             <ol class="carousel-indicators">
