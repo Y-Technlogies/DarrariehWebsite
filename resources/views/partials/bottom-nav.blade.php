@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border">
+<nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border maxWidthNav">
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav text-center">
             <li class="nav-item border-right px-3">
