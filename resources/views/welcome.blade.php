@@ -8,7 +8,7 @@
 
 		@if (env('APP_ENV') === 'local')
 			<link href="{{ URL::asset('css/custom.css') }}" rel="stylesheet" type="text/css" >
-		@else 
+		@else
 			<link href="{{ URL::asset('public/css/custom.css') }}" rel="stylesheet" type="text/css" >
 		@endif
         <!-- Fonts -->
@@ -18,6 +18,8 @@
     </head>
     <body>
         <div class="container-fluid full-screen-fix">
+            @include('partials.lang-bar')
+
             @yield('content')
         </div>
 

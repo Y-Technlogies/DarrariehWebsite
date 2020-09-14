@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+Route::get('locale/{locale}', function ($locale){
+    Session::put('locale', $locale);
+    return redirect()->back();
+});
+
 Route::get('/', function () {
     return redirect()->route('product.index');
 });
@@ -57,6 +62,10 @@ Route::get('/cart-list', function (){
 
     $products = Session::get('products');
     $total = 0;
+
+    if (empty($products)) {
+        return view('cart.list', compact('products'));
+    }
 
     foreach ($products as $key=>$product)
     {

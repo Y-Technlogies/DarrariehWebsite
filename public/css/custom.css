@@ -186,6 +186,11 @@ body {
     margin-right: -7px;
 }
 
+.margin-fix-full {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
 .full-screen-fix {
     margin: 0 auto;
     max-width: 400px;
