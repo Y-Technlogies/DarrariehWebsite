@@ -1,9 +1,11 @@
-<?php
+<?php /** @noinspection ALL */
+
 namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderLine;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -87,7 +89,17 @@ class PaymentController extends Controller
             ]);
         }
 
-        $res = $this->client->post($this->url.'/v2/SendPayment', ['headers' => $this->header, RequestOptions::JSON => $body]);
+        try {
+
+            $res = $this->client->post($this->url.'/v2/SendPayment', ['headers' => $this->header, RequestOptions::JSON => $body]);
+        }catch(RequestException $e) {
+
+            $status = 'error';
+            $message = 'Error!! payment not successful';
+
+            return view('cart.payment_response')->with(compact('status', 'message'));
+        }
+
         $data = json_decode($res->getBody()->getContents(), true);
         $order->invoice_id = $data['Data']['InvoiceId'];
         $order->save();
@@ -113,11 +125,17 @@ class PaymentController extends Controller
         Session::put('products', []);
         Session::put('products_count', 0);
 
-        return redirect()->to('/')->with('success', 'You Order has been placed successfully');
+        $status = 'success';
+        $message = trans('cart.order_success');
+
+        return view('cart.payment_response')->with(compact('status', 'message'));
     }
 
-    public function faild()
+    public function faild(Request $request)
     {
-        echo 'Paymant faild';
+        $status = 'error';
+        $message = trans('cart.order_error');
+
+        return view('cart.payment_response')->with(compact('status', 'message'));
     }
 }

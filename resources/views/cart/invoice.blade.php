@@ -19,11 +19,11 @@
     <div class="card mt-2 p-1 invoice margin-fix">
         <div class="card-body">
             <p class="card-text d-flex justify-content-between text-center m-0">
-                <span class="text-gray">Product Total</span>
+                <span class="text-gray">{{ __('cart.product_total') }}</span>
                 <span class="text-gray">{{ Session::get('total') }}</span>
             </p>
             <p class="card-text d-flex justify-content-between text-center m-0">
-                <span>Order Total</span>
+                <span>{{ __('cart.order_total') }}</span>
                 <span class="order-total">{{ Session::get('total') }}</span>
             </p>
         </div>
@@ -47,14 +47,14 @@
         </div>
     @endforeach
 
-    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border">
+    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border full-screen-fix">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
                 <li class="border-right nav-item p-2 text-left w-100 total">
-                    Grand Total: <span class="pl-1">{{ Session::get('total') }}</span>
+                    {{ __('cart.grand_total') }}: <span class="pl-1">{{ Session::get('total') }}</span>
                 </li>
                 <li class="nav-item add-to-cart py-1">
-                    <a class="nav-link font-weight-bold" href="{{ route('pay') }}">Confirm Pay</a>
+                    <a class="nav-link font-weight-bold" href="{{ route('pay') }}">{{ __('cart.confirm_pay') }}</a>
                 </li>
             </ul>
         </div>

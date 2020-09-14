@@ -5,7 +5,7 @@
             <img class="card-img-top" src="{{ Voyager::image($product->getImage()[0]) }}" alt="Card image cap">
             <div class="card-body">
                 <p class="card-text two-line mb-3">
-                    {{ $product->description }}
+                    {{ $product->getTranslatedAttribute('description') }}
                 </p>
                 <p class="card-text card-price mb-2">
                     {{ $product->price }}
