@@ -1,9 +1,9 @@
 <?php
 return [
 
-    'ADD_To_Cart' => 'ADD To Cart',
-    'Shop' => 'Shop',
-    'Cart' => 'Cart',
-    'Confirm' => 'Confirm 2',
+    'add_to_cart' => 'ADD To Cart',
+    'shop' => 'Shop',
+    'cart' => 'Cart',
+    'confirm' => 'Confirm ar',
 
 ];
