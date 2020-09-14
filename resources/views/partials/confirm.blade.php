@@ -2,7 +2,7 @@
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav text-center">
             <li class="nav-item add-to-cart py-1">
-                <a class="nav-link" href="#">Confirmed</a>
+                <a class="nav-link" href="#">{{ __('bottom-nav.confirm')}}</a>
             </li>
         </ul>
     </div>

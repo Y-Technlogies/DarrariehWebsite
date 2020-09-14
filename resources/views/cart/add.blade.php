@@ -19,7 +19,7 @@
                 {{ csrf_field() }}
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Size</label> <br/>
+                    <label for="exampleFormControlInput1">{{ __('cart.size') }}</label> <br/>
                     @foreach(json_decode($product->size) as $size)
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="product_size" value="{{ $size }}">
@@ -28,7 +28,7 @@
                     @endforeach
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Color</label> <br />
+                    <label for="exampleFormControlInput1">{{ __('cart.color') }}</label> <br />
                     @foreach(json_decode($product->style_color) as $color)
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="product_color" value="{{ $color }}">
@@ -37,10 +37,10 @@
                     @endforeach
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Quantity</label>
+                    <label for="exampleFormControlInput1">{{ __('cart.quantity') }}</label>
                     <input type="number" name="quantity" class="form-control" placeholder="0">
                 </div>
-                <button class="btn btn-block btn-submit mb" type="submit">Confirm</button>
+                <button class="btn btn-block btn-submit mb" type="submit">{{ __('cart.confirm') }}</button>
             </form>
         </div>
     </div>
