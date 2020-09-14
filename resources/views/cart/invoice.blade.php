@@ -47,7 +47,7 @@
         </div>
     @endforeach
 
-    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border">
+    <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border full-screen-fix">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
                 <li class="border-right nav-item p-2 text-left w-100 total">

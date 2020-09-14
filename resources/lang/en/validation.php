@@ -1,4 +1,4 @@
 <?php
         return [
-            'required' => ':lang is required'
+            'required' => ':attribute is required'
         ];

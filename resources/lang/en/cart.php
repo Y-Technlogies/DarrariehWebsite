@@ -17,5 +17,7 @@ return [
     'size' => 'Size',
     'color' => 'Color',
     'save' => 'Save',
+    'order_error' => 'Error!! payment not successful',
+    'order_success' => 'Order placed successfuly',
 
 ];
