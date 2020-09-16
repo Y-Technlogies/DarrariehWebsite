@@ -200,3 +200,21 @@ body {
     font-size: 0.8rem;
     background-color: #e6e6e6;
 }
+
+.dropdown-menu-right {
+    min-width: auto!important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: #ffc107!important;
+    font-size: 1rem!important;
+    font-family: 'Lemonada', cursive;
+    letter-spacing: 3px;
+    line-height: .80rem!important;
+    text-shadow: 2px 1px 1px #e83e8c;
+}
+
+.dropdown-toggle, .dropdown-toggle:hover {
+    color: #dc3545;
+}
