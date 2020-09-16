@@ -17,7 +17,7 @@
                         {{ $product['product_size']}} , {{ array_key_exists('product_color', $product) ? $product['product_color'] : ''  }}
                     </p>
                     <p class="card-text card-text d-flex justify-content-between text-center">
-                        <span class="price">{{ $product['price'] }}</span>
+                        <span class="price">{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
                         <span class="quantity">Q : {{ $product['quantity']}}</span>
                     </p>
                 </div>
@@ -28,7 +28,7 @@
     <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border full-screen-fix">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
-                <li class="border-right nav-item p-2 text-left w-100 total">
+                <li class="border-right nav-item p-2 @if(app()->getLocale() === 'en') text-left @else text-right @endif w-100 total">
                   {{ __('cart.total') }}: <span class="pl-1">{{ Session::get('total') }}</span>
                 </li>
                 <li class="nav-item add-to-cart py-1">

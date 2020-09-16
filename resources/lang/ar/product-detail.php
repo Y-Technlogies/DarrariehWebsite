@@ -1,8 +1,9 @@
 <?php
 return [
 
-    'item_description' => 'Item Description in arobic',
+    'item_description' => 'الوصف',
     'Previous' => 'Previous',
-    'Next' => 'Next'
+    'Next' => 'Next',
+    'currency' => 'د.ك'
 
 ];

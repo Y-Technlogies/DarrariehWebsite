@@ -1,5 +1,5 @@
 <nav class="bg-white margin-fix-full navbar navbar-light p-0 px-2">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ url('/') }}">
         <img src="{{ asset('img/flower.png') }}" width="30" height="30" alt="">
         للدراريع
     </a>

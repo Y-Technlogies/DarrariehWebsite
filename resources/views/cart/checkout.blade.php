@@ -3,7 +3,7 @@
 @section('content')
     <div class="row bg-white p-2 row">
         @include('partials.frontend.validation')
-        <form method="post" action="{{ route('customer.store') }}">
+        <form method="post" action="{{ route('customer.store') }}" class="@if(app()->getLocale() === 'en') text-left @else text-right @endif">
             {{ csrf_field() }}
             <div class="form-row">
                 <div class="form-group col">
