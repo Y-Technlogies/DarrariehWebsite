@@ -58,11 +58,11 @@
                         @endif
                     </li>
                     <li class="border-right nav-item p-2 @if(app()->getLocale() === 'en') text-left @else text-right @endif w-100 total">
-                        {{ __('cart.total') }} : <span class="pl-1">{{ Session::get('total') }}</span>
+                        {{ __('cart.total') }} : <span class="pl-1">{{ __('product-detail.currency') }} {{ Session::get('total') }}</span>
                     </li>
                 @else
                     <li class="border-right nav-item p-2 @if(app()->getLocale() === 'en') text-left @else text-right @endif w-100 total">
-                      {{ __('cart.total') }} : <span class="pl-1">{{ Session::get('total') }}</span>
+                      {{ __('cart.total') }} : <span class="pl-1">{{ Session::get('total') }} {{ __('product-detail.currency') }}</span>
                     </li>
                     <li class="nav-item add-to-cart py-1">
                         @if(@count($products) > 0)

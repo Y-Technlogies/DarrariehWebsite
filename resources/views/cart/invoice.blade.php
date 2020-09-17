@@ -77,12 +77,21 @@
     <nav id="navbar" class="navbar fixed-bottom navbar-expand navbar-light bg-white p-0 border full-screen-fix">
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav text-center">
-                <li class="border-right nav-item p-2 text-left w-100 total">
-                    {{ __('cart.grand_total') }}: <span class="pl-1">{{ Session::get('total') }} {{ __('product-detail.currency') }}</span>
-                </li>
-                <li class="nav-item add-to-cart py-1">
-                    <a class="nav-link font-weight-bold" href="{{ route('pay') }}">{{ __('cart.confirm_pay') }}</a>
-                </li>
+                @if($isArabic)
+                    <li class="nav-item add-to-cart py-1">
+                        <a class="nav-link font-weight-bold" href="{{ route('pay') }}">{{ __('cart.confirm_pay') }}</a>
+                    </li>
+                    <li class="border-left nav-item p-2 text-right w-100 total">
+                        {{ __('cart.grand_total') }} : <span class="pl-1">{{ __('product-detail.currency') }} {{ Session::get('total') }} </span>
+                    </li>
+                @else
+                    <li class="border-right nav-item p-2 text-left w-100 total">
+                        {{ __('cart.grand_total') }}: <span class="pl-1">{{ Session::get('total') }} {{ __('product-detail.currency') }}</span>
+                    </li>
+                    <li class="nav-item add-to-cart py-1">
+                        <a class="nav-link font-weight-bold" href="{{ route('pay') }}">{{ __('cart.confirm_pay') }}</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>
