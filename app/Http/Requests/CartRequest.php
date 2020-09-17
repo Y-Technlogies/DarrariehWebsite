@@ -33,11 +33,11 @@ class CartRequest extends FormRequest
     public function messages()
     {
         return [
-            'product_size.required' => trans('validation.required', ['Product Size']),
-            'product_size.string' => trans('validation.required', ['Product Size']),
-            'product_color.required' => trans('validation.required', ['Product Color']),
-            'product_color.string' => trans('validation.required', ['Product Color']),
-            'quantity.required' => trans('validation.required', ['Quantity']),
+            'product_size.required' => trans('validation.required', ['attribute' => __('cart.product_size')]),
+            'product_size.string' => trans('validation.required', ['attribute' => __('cart.product_size')]),
+            'product_color.required' => trans('validation.required', ['attribute' => __('cart.product_color')]),
+            'product_color.string' => trans('validation.required', [ 'attribute' =>__('cart.product_color')]),
+            'quantity.required' => trans('validation.required', ['attribute' => __('cart.quantity')]),
         ];
     }
 }

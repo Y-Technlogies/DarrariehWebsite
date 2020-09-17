@@ -1,4 +1,4 @@
 <?php
 return [
-    'required' => ':attribute is required'
+    'required' => ':attribute هذا الحقل مطلوب'
 ];

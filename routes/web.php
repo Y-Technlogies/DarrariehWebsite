@@ -33,6 +33,7 @@ Route::resource('/customer','CustomerController');
 Route::get('/cart/{id}',function ($id) {
 
     $product = Product::find($id);
+    $product->load('translations');
 
     return view('cart.add', compact('product'));
 

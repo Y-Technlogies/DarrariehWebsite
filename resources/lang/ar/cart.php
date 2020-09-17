@@ -9,7 +9,7 @@ return [
     'address' => 'العنوان',
     'product_total' => 'إجمالي المنتج',
     'order_total' => 'المجموع',
-    'grand_total' => 'Grand Total',
+    'grand_total' => 'المجموع',
     'confirm_pay' => 'التأكيد و الدفع',
     'total' => 'إجمالي',
     'checkout' => 'التأكيد',
@@ -17,7 +17,9 @@ return [
     'size' => 'القالب',
     'color' => 'اللون',
     'save' => 'حفظ',
-    'order_error' => 'Error!! payment not successful ar',
-    'order_success' => 'Order placed successfuly ar',
+    'order_error' => 'خطأ في الطلبالدفع غير ناجح',
+    'order_success' => 'نجاح الطلب تم وضع الطلب بنجاح',
+    'product_size' => 'حجم المنتج',
+    'product_color' => 'حجم المنتج',
 
 ];

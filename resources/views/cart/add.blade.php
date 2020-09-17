@@ -3,18 +3,30 @@
 @section('content')
     <div class="margin-fix">
         <div class="border-bottom-0 card d-flex flex-row mt-3">
-            <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
-            <div class="card-body">
-                <p class="card-text two-line mb-3">
-                    {{ $product->description }}
-                </p>
-                <p class="card-text card-price mb-2">
-                    {{ $product->price }} {{ __('product-detail.currency') }}
-                </p>
-            </div>
+            @if($isArabic)
+                <div class="card-body text-right">
+                    <p class="card-text two-line mb-3">
+                        {{ $product->getTranslatedAttribute('description') }}
+                    </p>
+                    <p class="card-text card-price mb-2">
+                        {{ $product->price }} {{ __('product-detail.currency') }}
+                    </p>
+                </div>
+                <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
+            @else
+                <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
+                <div class="card-body">
+                    <p class="card-text two-line mb-3">
+                        {{ $product->description }}
+                    </p>
+                    <p class="card-text card-price mb-2">
+                        {{ $product->price }} {{ __('product-detail.currency') }}
+                    </p>
+                </div>
+            @endif
         </div>
 
-        <div class="bg-white mx-0 pt-3 row">
+        <div class="bg-white border border-top-0 mx-0 pt-3 row">
             @include('partials.frontend.validation')
             <div class="col-sm-12">
                 <form method="post" action="{{ route('cart.post') }}" class="@if(app()->getLocale() === 'en') text-left @else text-right @endif">
