@@ -8,7 +8,7 @@
                 <div class="border-bottom-0 card d-flex flex-row mt-3 cart-list margin-fix">
                     <div class="card-body text-right">
                         <p class="card-text one-line mb-0">
-                            {{ $product['description'] }}
+                            {{ productTranslation($product['product_id']) }}
                         </p>
                         <p class="card-text style">
                             {{ $product['product_size']}} , {{ array_key_exists('product_color', $product) ? $product['product_color'] : ''  }}
