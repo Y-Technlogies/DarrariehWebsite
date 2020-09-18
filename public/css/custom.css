@@ -204,7 +204,8 @@ body {
 }
 
 .dropdown-menu-right {
-    min-width: auto!important;
+    right:0;
+    left: auto;
 }
 
 .navbar-brand {
