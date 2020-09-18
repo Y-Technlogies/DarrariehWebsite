@@ -205,7 +205,7 @@ body {
 
 .dropdown-menu-right {
     right:0;
-    left: auto;
+    left: auto!important;
 }
 
 .navbar-brand {
