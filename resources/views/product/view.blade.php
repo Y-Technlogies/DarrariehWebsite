@@ -38,34 +38,49 @@
             @endif
         </div>
 
-        <div class="product-info">
-            <span>{{ $dataTypeContent->getTranslatedAttribute('price') }}</span>
+        <div class="product-info w-100 @if($isArabic) text-right @endif">
+            <span>{{ $dataTypeContent->getTranslatedAttribute('price') }} {{ __('product-detail.currency') }}</span>
             <p class="product-description">{{ $dataTypeContent->getTranslatedAttribute('description') }}
                 <span class="product-id">{{ $dataTypeContent->id }}</span>
             </p>
         </div>
     </div>
 
-    <div class="row bg-white mt-3 details">
-        <span>{{ __('product-detail.item_description') }}</span>
+    <div class="row bg-white mt-3 details @if($isArabic) text-right @endif">
+        <h3 class="w-100">{{ __('product-detail.item_description') }}</h3>
         <table class="table table-bordered mt-3">
             <tbody>
             @foreach($dataType->readRows as $row)
 
                 @if(!in_array($row->field, ['price', 'images', 'description', 'created_at']))
                     <tr>
-                        <td>
-                            {{ $row->getTranslatedAttribute('display_name') }}
-                        </td>
-                        <td>
-                            @if($row->field === 'size')
-                                @foreach(json_decode($dataTypeContent->{$row->field}, true) as $size)
-                                    {{ $size }}
-                                @endforeach
-                            @else
-                                {{ $dataTypeContent->getTranslatedAttribute($row->field) }}
-                            @endif
-                        </td>
+                        @if($isArabic)
+                            <td>
+                                @if($row->field === 'size' || $row->field === 'style_color')
+                                    @foreach(json_decode($dataTypeContent->{$row->field}, true) as $size)
+                                        {{ $size }}
+                                    @endforeach
+                                @else
+                                    {{ $dataTypeContent->getTranslatedAttribute($row->field) }}
+                                @endif
+                            </td>
+                            <td>
+                                {{ $row->getTranslatedAttribute('display_name') }}
+                            </td>
+                        @else
+                            <td>
+                                {{ $row->getTranslatedAttribute('display_name') }}
+                            </td>
+                            <td>
+                                @if($row->field === 'size' || $row->field === 'style_color')
+                                    @foreach(json_decode($dataTypeContent->{$row->field}, true) as $size)
+                                        {{ $size }}
+                                    @endforeach
+                                @else
+                                    {{ $dataTypeContent->getTranslatedAttribute($row->field) }}
+                                @endif
+                            </td>
+                        @endif
                     </tr>
                     @endif
                 @endforeach

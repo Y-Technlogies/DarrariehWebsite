@@ -111,7 +111,7 @@ body {
     height: 15px;
     width: 15px;
     top: 3px;
-    left: 112px;
+    /*left: 112px;*/
     border-radius: 10px;
 }
 
@@ -147,7 +147,6 @@ body {
 
 .cart-list .style {
     margin-top: 0.5rem;
-    width: 4rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -160,6 +159,9 @@ body {
 .cart-list .price {
     color: #ff4443;
     font-size: 1rem;
+}
+
+.cart-list .price, .quantity {
     line-height: 2rem;
 }
 
@@ -199,4 +201,22 @@ body {
 .payment input {
     font-size: 0.8rem;
     background-color: #e6e6e6;
+}
+
+.dropdown-menu-right {
+    min-width: auto!important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: #ffc107!important;
+    font-size: 1rem!important;
+    font-family: 'Lemonada', cursive;
+    letter-spacing: 3px;
+    line-height: .80rem!important;
+    text-shadow: 2px 1px 1px #e83e8c;
+}
+
+.dropdown-toggle, .dropdown-toggle:hover {
+    color: #dc3545;
 }
