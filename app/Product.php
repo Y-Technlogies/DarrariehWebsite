@@ -17,4 +17,9 @@ class Product extends Model
     {
         return sizeof(json_decode($this->images)) > 0 ? json_decode($this->images) : $this->images;
     }
+
+    public function color()
+    {
+        return $this->belongsToMany(Color::class, 'product_colors', 'product_id', 'color_id');
+    }
 }

@@ -56,9 +56,30 @@
                     <tr>
                         @if($isArabic)
                             <td>
-                                @if($row->field === 'size' || $row->field === 'style_color')
-                                    @foreach(json_decode($dataTypeContent->{$row->field}, true) as $size)
-                                        {{ $size }}
+                                @if($row->field === 'size')
+                                    @if (@count(json_decode($dataTypeContent->{$row->field})) > 0)
+                                        @foreach(json_decode($dataTypeContent->{$row->field}) as $item)
+                                            @if (@$row->details->options->{$item})
+                                                {{ $row->details->options->{$item} . (!$loop->last ? ', ' : '') }}
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        {{ __('voyager::generic.none') }}
+                                    @endif
+
+                                @elseif($row->type == 'relationship')
+                                    @php
+                                        $relationshipData = (isset($data)) ? $data : $dataTypeContent;
+
+                                        $selected_values = isset($relationshipData) ? $relationshipData->belongsToMany($row->details->model, $row->details->pivot_table, $row->details->foreign_pivot_key ?? null, $row->details->related_pivot_key ?? null, $row->details->parent_key ?? null, $row->details->key)->get()->map(function ($item, $key) use ($row) {
+
+                                            return $item->{$row->details->label};
+
+                                        })->all() : array();
+                                    @endphp
+                                    @foreach($selected_values as $color)
+                                        {{--{{ $color . (!$loop->last ? ', ' : '')  }}--}}
+                                        <div class="badge badge-lg" style="background-color: {{ $color }}; width: 30px; height: 20px;">&nbsp;</div>
                                     @endforeach
                                 @else
                                     {{ $dataTypeContent->getTranslatedAttribute($row->field) }}
@@ -72,9 +93,29 @@
                                 {{ $row->getTranslatedAttribute('display_name') }}
                             </td>
                             <td>
-                                @if($row->field === 'size' || $row->field === 'style_color')
-                                    @foreach(json_decode($dataTypeContent->{$row->field}, true) as $size)
-                                        {{ $size }}
+                                @if($row->field === 'size')
+                                    @if (@count(json_decode($dataTypeContent->{$row->field})) > 0)
+                                        @foreach(json_decode($dataTypeContent->{$row->field}) as $item)
+                                            @if (@$row->details->options->{$item})
+                                                {{ $row->details->options->{$item} . (!$loop->last ? ', ' : '') }}
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        {{ __('voyager::generic.none') }}
+                                    @endif
+
+                                @elseif($row->type == 'relationship')
+                                    @php
+                                        $relationshipData = (isset($data)) ? $data : $dataTypeContent;
+
+                                        $selected_values = isset($relationshipData) ? $relationshipData->belongsToMany($row->details->model, $row->details->pivot_table, $row->details->foreign_pivot_key ?? null, $row->details->related_pivot_key ?? null, $row->details->parent_key ?? null, $row->details->key)->get()->map(function ($item, $key) use ($row) {
+
+                                            return $item->{$row->details->label};
+
+                                        })->all() : array();
+                                    @endphp
+                                    @foreach($selected_values as $color)
+                                        <div class="badge badge-lg" style="background-color: {{ $color }}; width: 30px; height: 20px;">&nbsp;</div>
                                     @endforeach
                                 @else
                                     {{ $dataTypeContent->getTranslatedAttribute($row->field) }}

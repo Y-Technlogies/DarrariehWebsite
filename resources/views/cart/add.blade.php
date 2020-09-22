@@ -34,19 +34,39 @@
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">{{ __('cart.size') }}</label> <br/>
-                        @foreach(json_decode($product->size) as $size)
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="product_size" value="{{ $size }}">
-                                <label class="form-check-label" for="product_size">{{ strtoupper($size) }}</label>
-                            </div>
+                        @foreach($dataType->readRows as $row)
+                            @if($row->field === 'size')
+                                @if (@count(json_decode($dataTypeContent->size)) > 0)
+                                        @foreach(json_decode($dataTypeContent->size) as $item)
+                                            @if ($row->details->options->{$item})
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="product_size" value="{{ $item }}">
+                                                    <label class="form-check-label" for="product_size">{{ $row->details->options->{$item}  }}</label>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                @else
+                                    {{ __('voyager::generic.none') }}
+                                @endif
+                            @endif
                         @endforeach
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">{{ __('cart.color') }}</label> <br />
-                        @foreach(json_decode($product->style_color) as $color)
+                        @php
+                            $relationshipData = (isset($data)) ? $data : $dataTypeContent;
+
+                            $selected_values = isset($relationshipData) ? $relationshipData->belongsToMany($row->details->model, $row->details->pivot_table, $row->details->foreign_pivot_key ?? null, $row->details->related_pivot_key ?? null, $row->details->parent_key ?? null, $row->details->key)->get()->map(function ($item, $key) use ($row) {
+                                return $item;
+
+                            })->all() : array();
+                        @endphp
+                        @foreach($selected_values as $color)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="product_color" value="{{ $color }}">
-                                <label class="form-check-label" for="product_color">{{ ucfirst($color) }}</label>
+                                <input class="form-check-input" type="radio" name="product_color" value="{{ $color->id }}">
+                                <label class="form-check-label" for="product_color">
+                                    <div class="badge badge-lg" style="background-color: {{ $color->code }}; color: {{ $color->code }}; width: 30px; height: 20px;">&nbsp;</div>
+                                </label>
                             </div>
                         @endforeach
                     </div>

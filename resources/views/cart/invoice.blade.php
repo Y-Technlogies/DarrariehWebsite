@@ -47,9 +47,12 @@
                     <p class="card-text one-line mb-0">
                         {{ productTranslation($product['product_id']) }}
                     </p>
-                    <p class="card-text style">
-                        {{ $product['product_size']}} , {{ $product['product_color']  }}
-                    </p>
+                    <div class="card-text style mb-3">
+                        @php
+                            $color = \App\Color::find($product['product_color'])->first();
+                        @endphp
+                        {{ getSizeFromOption($product['product_size']) }} , <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div>
+                    </div>
                     <p class="card-text d-flex justify-content-between text-center">
                         <span class="quantity text-gray">{{ $product['quantity']}} x</span>
                         <span>{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
@@ -62,9 +65,12 @@
                 <p class="card-text one-line mb-0">
                     {{ productTranslation($product['product_id']) }}
                 </p>
-                <p class="card-text style">
-                    {{ $product['product_size']}} , {{ $product['product_color']  }}
-                </p>
+                <div class="card-text style mb-3">
+                    @php
+                        $color = \App\Color::find($product['product_color'])->first();
+                    @endphp
+                <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div> , {{ getSizeFromOption($product['product_size']) }}
+                </div>
                 <p class="card-text d-flex justify-content-between text-center">
                     <span>{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
                     <span class="quantity text-gray">x{{ $product['quantity']}}</span>

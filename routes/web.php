@@ -32,10 +32,17 @@ Route::resource('/customer','CustomerController');
 
 Route::get('/cart/{id}',function ($id) {
 
+    $dataType = Voyager::model('DataType')->where('slug', '=', 'products')->first();
+
+    if (strlen($dataType->model_name) != 0) {
+        $model = app($dataType->model_name);
+        $dataTypeContent = call_user_func([$model, 'findOrFail'], $id);
+    }
+
     $product = Product::find($id);
     $product->load('translations');
 
-    return view('cart.add', compact('product'));
+    return view('cart.add', compact('product', 'dataType', 'dataTypeContent'));
 
 })->name('cart.add');
 
