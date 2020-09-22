@@ -86,11 +86,10 @@ body {
 }
 
 .card-columns {
-    margin-right: -15px;
-    margin-left: -15px;
+    margin-left: -120px;
     margin-top: 7px;
-    column-count: 2;
-    column-gap: 0.5rem;
+    column-count: 2!important;
+    column-gap: 0.3rem;
     display: inline-block;
 }
 
