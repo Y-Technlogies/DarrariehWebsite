@@ -86,7 +86,7 @@ body {
 }
 
 .card-columns {
-    margin-left: -120px;
+    margin-left: -20px;
     margin-top: 7px;
     column-count: 2!important;
     column-gap: 0.3rem;
