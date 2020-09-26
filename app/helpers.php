@@ -24,3 +24,13 @@ function productSizeList() {
 function getSizeFromOption($size) {
     return productSizeList()->{$size};
 }
+
+function getPriceWithCurrency($value) {
+    return currency($value, 'KWD', currency()->getUserCurrency());
+}
+
+function numberFormatter($value) {
+    $formatter = new NumberFormatter(config('app.locale'), NumberFormatter::DEFAULT_STYLE);
+
+    return $formatter->format($value);
+}

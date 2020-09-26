@@ -48,7 +48,7 @@ Route::get('/cart/{id}',function ($id) {
 
 Route::post('/cart',function (CartRequest $request) {
 
-//    $request->session()->forget('products');
+   // $request->session()->forget('products');
     $product = [];
 
     if (!$request->session()->has('products')) {
@@ -109,6 +109,10 @@ Route::get('/cart-remove/{id}', function ($id){
     return redirect()->back();
 
 })->name('cart.remove');
+
+Route::get('/cart-reset', function() {
+    Session::forget('products');
+});
 
 Route::get('/checkout', function() {
 

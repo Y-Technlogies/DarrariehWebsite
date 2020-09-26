@@ -8,7 +8,7 @@
                     {{ $product->getTranslatedAttribute('description') }}
                 </p>
                 <p class="card-text card-price mb-2">
-                    {{ $product->price }} {{ __('product-detail.currency') }}
+                    {{  getPriceWithCurrency($product->price) }}
                 </p>
             </div>
         </div>

@@ -9,7 +9,7 @@
                         {{ $product->getTranslatedAttribute('description') }}
                     </p>
                     <p class="card-text card-price mb-2">
-                        {{ $product->price }} {{ __('product-detail.currency') }}
+                        {{ $product->price }}
                     </p>
                 </div>
                 <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
@@ -20,7 +20,7 @@
                         {{ $product->description }}
                     </p>
                     <p class="card-text card-price mb-2">
-                        {{ $product->price }} {{ __('product-detail.currency') }}
+                        {{ $product->price }}
                     </p>
                 </div>
             @endif

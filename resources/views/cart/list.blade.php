@@ -16,8 +16,8 @@
                             {{ getSizeFromOption($product['product_size']) }} , <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div>
                         </div>
                         <p class="card-text card-text d-flex justify-content-between text-center">
-                            <span class="quantity">Q : {{ $product['quantity']}}</span>
-                            <span class="price">{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
+                            <span class="quantity"> {{ numberFormatter($product['quantity'])}} : Q</span>
+                            <span class="price">{{ getPriceWithCurrency($product['price']) }}</span>
                         </p>
                     </div>
                     <img src="{{Voyager::image($product['image'])}}" class="w-25">
@@ -42,7 +42,7 @@
                            <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div> , {{ getSizeFromOption($product['product_size']) }}
                         </div>
                         <p class="card-text card-text d-flex justify-content-between text-center">
-                            <span class="price">{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
+                            <span class="price">{{ getPriceWithCurrency($product['price']) }}</span>
                             <span class="quantity">Q : {{ $product['quantity']}}</span>
                         </p>
                     </div>
@@ -62,12 +62,12 @@
                             <a class="nav-link font-weight-bold" href="{{ url('/') }}">{{ __('cart.go_to_home') }}</a>
                         @endif
                     </li>
-                    <li class="border-right nav-item p-2 @if(app()->getLocale() === 'en') text-left @else text-right @endif w-100 total @if(Session::get('total') < 1) invisible @endif">
-                        {{ __('cart.total') }} : <span class="pl-1">{{ __('product-detail.currency') }} {{ Session::get('total') }}</span>
+                    <li class="border-right nav-item p-2 text-right w-100 total @if(Session::get('total') < 1) invisible @endif">
+                        <span class="pl-1">{{  getPriceWithCurrency(Session::get('total')) }}</span> : {{ __('cart.total') }}
                     </li>
                 @else
-                    <li class="border-right nav-item p-2 @if(app()->getLocale() === 'en') text-left @else text-right @endif w-100 total @if(Session::get('total') < 1) invisible @endif">
-                      {{ __('cart.total') }} : <span class="pl-1">{{ Session::get('total') }} {{ __('product-detail.currency') }}</span>
+                    <li class="border-right nav-item p-2  text-left w-100 total @if(Session::get('total') < 1) invisible @endif">
+                      {{ __('cart.total') }} : <span class="pl-1">{{  getPriceWithCurrency(Session::get('total')) }}</span>
                     </li>
                     <li class="nav-item add-to-cart py-1">
                         @if(@count($products) > 0)

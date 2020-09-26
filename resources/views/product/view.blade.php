@@ -39,7 +39,7 @@
         </div>
 
         <div class="product-info w-100 @if($isArabic) text-right @endif">
-            <span>{{ $dataTypeContent->getTranslatedAttribute('price') }} {{ __('product-detail.currency') }}</span>
+            <span>{{ getPriceWithCurrency($dataTypeContent->getTranslatedAttribute('price')) }}</span>
             <p class="product-description">{{ $dataTypeContent->getTranslatedAttribute('description') }}
                 <span class="product-id">{{ $dataTypeContent->id }}</span>
             </p>

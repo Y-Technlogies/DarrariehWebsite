@@ -16,7 +16,9 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
-        "tcg/voyager": "^1.4"
+        "tcg/voyager": "^1.4",
+        "torann/currency": "^1.1",
+        "torann/geoip": "~1.2.2"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

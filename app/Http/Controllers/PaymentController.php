@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderLine;
+use App\Product;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
@@ -66,6 +67,7 @@ class PaymentController extends Controller
         $body['CustomerEmail'] = $customer->email ?: 'admin@gmail.com';
         $body['CustomerReference'] = $customer->id;
         $body['CustomerAddress']['Address'] = $customer->address;
+        $body['DisplayCurrencyIso'] = (currency()->getUserCurrency()) ? currency()->getUserCurrency() : 'KWD';
 
         $order = new Order();
         $order->customer_id = $customer->id;
@@ -83,7 +85,7 @@ class PaymentController extends Controller
             $orderLine->save();
 
             array_push($body['InvoiceItems'],[
-                'ItemName' => $product['product_id'],
+                'ItemName' => Product::find($product['product_id'])->first()->description,
                 'Quantity' => (int) $product['quantity'],
                 'UnitPrice' => $product['price'],
             ]);
