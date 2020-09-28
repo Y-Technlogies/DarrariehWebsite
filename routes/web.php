@@ -25,7 +25,7 @@ Route::get('locale/{locale}', function ($locale){
 
 Route::get('/', function () {
 
-    dd(geoip(session()->get('ip')));
+    dd(geoip(session()->get('ip'))->getAttribute('currency'));
 
     return redirect()->route('product.index');
 });
