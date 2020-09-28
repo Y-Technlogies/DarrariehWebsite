@@ -22,6 +22,10 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
+Route::get('/currencyCheck', function () {
+    dd(currency()->getCurrencies());
+});
+
 Route::get('/', function () {
     return redirect()->route('product.index');
 });
