@@ -24,6 +24,9 @@ Route::get('locale/{locale}', function ($locale){
 });
 
 Route::get('/', function () {
+
+    dd(geoip(session()->get('ip')));
+
     return redirect()->route('product.index');
 });
 
