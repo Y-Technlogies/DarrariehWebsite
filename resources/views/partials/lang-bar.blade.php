@@ -16,9 +16,9 @@
         </div>
 
         <div class="nav-item">
-            <a class="nav-link" href="#">
-                {{ currency()->__get('symbol') }}
-            </a>
+            <div class="nav-link text-danger" >
+                {{ currency()->__get('symbol') }} {{ request()->ip() }}
+            </div>
         </div>
     </div>
 </nav>
