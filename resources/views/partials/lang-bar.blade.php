@@ -4,14 +4,21 @@
         للدراريع
     </a>
 
-    <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ app()->getLocale() === 'en' ? 'English' : 'عربي' }}
-        </a>
-        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ url('locale/en') }}" >English</a>
-            <a class="dropdown-item" href="{{ url('locale/en') }}" >{{ session()->get('currency') }} {{ request()->ip() }}</a>
-            <a class="dropdown-item" href="{{ url('locale/ar') }}" > عربي</a>
+    <div class="d-flex">
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ app()->getLocale() === 'en' ? 'English' : 'عربي' }}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url('locale/en') }}" >English</a>
+                <a class="dropdown-item" href="{{ url('locale/ar') }}" > عربي</a>
+            </div>
+        </div>
+
+        <div class="nav-item">
+            <a class="nav-link" href="#">
+                {{ currency()->__get('symbol') }}
+            </a>
         </div>
     </div>
 </nav>

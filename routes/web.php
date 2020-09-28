@@ -3,7 +3,6 @@
 use App\Customer;
 use App\Http\Requests\CartRequest;
 use App\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -24,9 +23,6 @@ Route::get('locale/{locale}', function ($locale){
 });
 
 Route::get('/', function () {
-
-//    dd(geoip(session()->get('ip'))->getAttribute('currency'));
-
     return redirect()->route('product.index');
 });
 

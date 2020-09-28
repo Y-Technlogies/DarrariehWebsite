@@ -26,7 +26,7 @@ function getSizeFromOption($size) {
 }
 
 function getPriceWithCurrency($value) {
-    return currency($value, 'KWD', currency()->getUserCurrency());
+    return currency($value, currency()->config('default'), currency()->getUserCurrency());
 }
 
 function numberFormatter($value) {
