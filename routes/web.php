@@ -22,8 +22,12 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
+//Route::get('/currencyCheck', function () {
+//    dd(currency()->getCurrencies());
+//});
+
 Route::get('/currencyCheck', function () {
-    dd(currency()->getCurrencies());
+    dd(geoip(request()->ip()));
 });
 
 Route::get('/', function () {
