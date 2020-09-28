@@ -17,7 +17,7 @@
 
         <div class="nav-item">
             <div class="nav-link text-danger" >
-                {{ currency()->__get('symbol') }} {{ request()->ip()     }}
+                {{ currency()->getUserCurrency() }}
             </div>
         </div>
     </div>
