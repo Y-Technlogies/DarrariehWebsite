@@ -10,7 +10,7 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ url('locale/en') }}" >English</a>
-            <a class="dropdown-item" href="{{ url('locale/en') }}" >{{ session()->get('currency') }} {{ session()->get('ip') }}</a>
+            <a class="dropdown-item" href="{{ url('locale/en') }}" >{{ session()->get('currency') }} {{ request()->ip() }}</a>
             <a class="dropdown-item" href="{{ url('locale/ar') }}" > عربي</a>
         </div>
     </div>
