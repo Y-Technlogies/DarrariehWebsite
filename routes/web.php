@@ -151,6 +151,9 @@ Route::group(['prefix' => 'v'], function () {
         $response['products'] = $products;
         $response['sizeList'] = productSizeList();
         $response['total'] = @count($products);
+
         return response()->json($response, 200);
     });
+
+    Route::post('/checkout', 'PaymentController@apiPay')->name('apiPay');
 });

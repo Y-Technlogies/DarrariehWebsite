@@ -138,4 +138,18 @@ class PaymentController extends Controller
 
         return view('cart.payment_response')->with(compact('status', 'message'));
     }
+
+    public function apiPay(Request $request)
+    {
+		return json_encode($request->all());
+		
+        $resCustomer = $request->get('customer');
+        $customer = App\Customer::firstOrCreate([
+            'first_name' => $resCustomer['firstName'],
+            'last_name' => $resCustomer['lastName'],
+            'phone' => $resCustomer['phone'],
+            'address' => $resCustomer['address'],
+        ]);
+        return json_encode($customer['firstName']);
+    }
 }
