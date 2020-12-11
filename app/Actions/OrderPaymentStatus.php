@@ -11,18 +11,18 @@ namespace App\Actions;
 
 use TCG\Voyager\Actions\AbstractAction;
 
-class OrderDetails extends AbstractAction
+class OrderPaymentStatus extends AbstractAction
 {
     public function getTitle()
     {
         // Action title which display in button based on current status
-        return 'Order Details';
+        return ($this->data->status == 'requested') ? 'Paid' : 'Unpaid';
     }
 
     public function getIcon()
     {
         // Action icon which display in left of button based on current status
-        return 'voyager-list';
+        return ($this->data->status != 'Paid') ? 'voyager-dollar' : '';
     }
 
     public function getAttributes()
@@ -36,12 +36,12 @@ class OrderDetails extends AbstractAction
     public function shouldActionDisplayOnDataType()
     {
         // show or hide the action button, in this case will show for posts model
-        return $this->dataType->slug == 'orders';
+        return ($this->dataType->slug == 'orders');
     }
 
     public function getDefaultRoute()
     {
         // URL for action button when click
-        return route('voyager.orders.show', array("id"=>$this->data->{$this->data->getKeyName()}));
+        return route('order.status.update', array("id"=>$this->data->{$this->data->getKeyName()}));
     }
 }

@@ -48,7 +48,7 @@ Route::get('/cart/{id}',function ($id) {
 
 Route::post('/cart',function (CartRequest $request) {
 
-//    $request->session()->forget('products');
+    $request->session()->forget('products');
     $product = [];
 
     if (!$request->session()->has('products')) {
@@ -134,6 +134,8 @@ Route::get('/pay/success', 'PaymentController@success')->name('pay.success');
 Route::get('/pay/faild', 'PaymentController@faild')->name('pay.faild');
 
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('order-status/update/{id}', 'AdminOrderController@updateStatus')->name('order.status.update');
     Voyager::routes();
 });
 

@@ -18,6 +18,6 @@ return [
     'color' => 'Color',
     'save' => 'Save',
     'order_error' => 'Error!! payment not successful',
-    'order_success' => 'Order placed successfuly',
+    'order_success' => 'Order placed successfuly. Save the order number :number for future query',
 
 ];
