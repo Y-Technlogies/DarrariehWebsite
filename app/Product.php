@@ -22,4 +22,11 @@ class Product extends Model
     {
         return $this->belongsToMany(Color::class, 'product_colors', 'product_id', 'color_id');
     }
+
+    public function getCover()
+    {
+        $images = $this->getImage();
+
+        return (json_last_error() == JSON_ERROR_NONE) ? $images[0] : $images;
+    }
 }
