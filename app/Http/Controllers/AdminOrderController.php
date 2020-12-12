@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Facades\Voyager;
@@ -59,11 +60,41 @@ class AdminOrderController extends VoyagerBaseController
 
         $orderLine =  DB::table('order_lines')
                             ->join('products', 'order_lines.product_id', '=', 'products.id')
-                            ->where('order_lines.order_id', $dataTypeContent->id)
+                            ->where('order_lines.order_id', '=',$dataTypeContent->id)
                             ->select('order_lines.*','products.description', 'products.images')
-                            ->get();
+                            ->get()
+                            ->toArray();
 
         return Voyager::view($view, compact('dataType',
                     'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted', 'orderLine'));
+    }
+
+    public function updateStatus($id)
+    {
+        $dataType = Voyager::model('DataType')->where('slug', '=', 'orders')->first();
+        $model = app($dataType->model_name);
+
+        if ($model && in_array(SoftDeletes::class, class_uses_recursive($model))) {
+            $data = $model->withTrashed()->findOrFail($id);
+        } else {
+            $data = $model->findOrFail($id);
+        }
+
+        $this->authorize('read', $data);
+
+        $data->status = ($data->status == 'requested') ? 'Paid' : 'requested';
+        $data->save();
+
+        if (auth()->user()->can('browse', app($dataType->model_name))) {
+            $redirect = redirect()->route("voyager.{$dataType->slug}.index");
+        } else {
+            $redirect = redirect()->back();
+        }
+
+        return $redirect->with([
+            'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
+            'alert-type' => 'success',
+        ]);
+
     }
 }

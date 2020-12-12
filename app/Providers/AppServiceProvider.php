@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Voyager::addAction(\App\Actions\OrderDetails::class);
+        Voyager::addAction(\App\Actions\OrderPaymentStatus::class);
         view()->composer('*',function($view) {
             $view->with('isArabic', $this->app->getLocale() === 'ar');
         });

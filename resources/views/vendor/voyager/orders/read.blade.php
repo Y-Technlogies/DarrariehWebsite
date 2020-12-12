@@ -58,13 +58,20 @@
                                              src="{{ filter_var($image[0], FILTER_VALIDATE_URL) ? $image[0] : Voyager::image($image[0]) }}">
                                     </td>
                                     <td><a href="{{ route('voyager.products.show', $order->product_id) }}">{{ $order->description }}</a></td>
-                                    <td>{{ $order->size }}</td>
-                                    <td>{{ $order->color }}</td>
+                                    <td>{{ getSizeFromOption($order->size) }}</td>
+                                    <td>{{ App\Color::find($order->color)->first()->label }}</td>
                                     <td>{{ $order->price }}</td>
                                     <td>{{ $order->quantity }}</td>
                                     <td>{{ $order->quantity * $order->price }}</td>
                                 </tr>
                             @endforeach
+                                <tr>
+                                    <td colspan="5">Grand Total :</td>
+                                    <td>{{ array_sum(array_column($orderLine, 'quantity')) }}</td>
+                                    <td>{{ array_sum(array_map(function($element){
+                                        return $element->quantity * $element->price;
+                                    }, $orderLine)) }}</td>
+                                </tr>
                         </tbody>
                     </table>
                 </div>
