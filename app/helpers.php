@@ -13,9 +13,6 @@ function productTranslation($id, $attribute = 'description') {
 function productSizeList() {
 
     $dataType = Voyager::model('DataType')->where('slug', '=', 'products')->first();
-    $dataTypeContent = (strlen($dataType->model_name) != 0)
-                        ? new $dataType->model_name()
-                        : false;
     $rows = array_search('size', array_column($dataType->readRows->all(), 'field'));
 
     return $dataType->readRows->all()[$rows]->details->options;
