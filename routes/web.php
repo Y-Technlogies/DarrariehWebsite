@@ -145,5 +145,28 @@ Route::get('/pay/success', 'PaymentController@success')->name('pay.success');
 Route::get('/pay/faild', 'PaymentController@faild')->name('pay.faild');
 
 Route::group(['prefix' => 'admin'], function () {
+
+    Route::get('order-status/update/{id}', 'AdminOrderController@updateStatus')->name('order.status.update');
     Voyager::routes();
+});
+
+Route::group(['prefix' => 'v'], function () {
+    Route::get('/product', function (Request $request) {
+
+        $response = [];
+
+        if ($request->has('id')) {
+            $products = Product::find($request->get('id'))->withTranslation($request->get('lang'))->with('color')->first();
+        }else {
+            $products = Product::withTranslation($request->get('lang'))->with('color')->get();
+        }
+
+        $response['products'] = $products;
+        $response['sizeList'] = productSizeList();
+        $response['total'] = @count($products);
+
+        return response()->json($response, 200);
+    });
+
+    Route::post('/checkout', 'PaymentController@apiPay')->name('apiPay');
 });

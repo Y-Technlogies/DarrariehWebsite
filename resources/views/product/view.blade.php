@@ -129,7 +129,7 @@
         </table>
     </div>
 
-    @include('partials.list')
+    {{--@include('partials.list')--}}
 
     @include('partials.bottom-nav', ['product' => $dataTypeContent])
 
