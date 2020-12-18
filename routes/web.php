@@ -23,9 +23,7 @@ Route::get('locale/{locale}', function ($locale){
     return redirect()->back();
 });
 
-Route::get('/', function () {
-    return redirect()->route('product.index');
-});
+Route::get('/', 'ProductController@index');
 
 Route::resource('/product','ProductController');
 Route::resource('/customer','CustomerController');

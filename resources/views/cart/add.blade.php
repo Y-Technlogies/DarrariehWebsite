@@ -12,9 +12,9 @@
                         {{ $product->price }} {{ __('product-detail.currency') }}
                     </p>
                 </div>
-                <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
+                <img height="120" src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
             @else
-                <img src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
+                <img height="120" src="{{Voyager::image($product->getImage()[0])}}" class="w-25">
                 <div class="card-body">
                     <p class="card-text two-line mb-3">
                         {{ $product->description }}
