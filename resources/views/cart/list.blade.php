@@ -20,7 +20,7 @@
                             <span class="price">{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
                         </p>
                     </div>
-                    <img src="{{Voyager::image($product['image'])}}" class="w-25">
+                    <img height="120" src="{{Voyager::image($product['image'])}}" class="w-25">
                     <a href="{{ route('cart.remove', $key) }}" class="btn btn-danger h-25 m-1">
                         <i class="fa fa-trash"></i>
                     </a>
@@ -30,7 +30,7 @@
                     <a href="{{ route('cart.remove', $key) }}" class="btn btn-danger h-25 m-1">
                         <i class="fa fa-trash"></i>
                     </a>
-                    <img src="{{Voyager::image($product['image'])}}" class="w-25">
+                    <img height="120" src="{{Voyager::image($product['image'])}}" class="w-25">
                     <div class="card-body">
                         <p class="card-text one-line mb-0">
                             {{ $product['description'] }}

@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="row bg-white mt-3 details @if($isArabic) text-right @endif">
+    <div class="row bg-white mt-3 mb-2 details @if($isArabic) text-right @endif">
         <h3 class="w-100">{{ __('product-detail.item_description') }}</h3>
         <table class="table table-bordered mt-3">
             <tbody>
@@ -129,7 +129,7 @@
         </table>
     </div>
 
-    {{--@include('partials.list')--}}
+    @include('partials.list')
 
     @include('partials.bottom-nav', ['product' => $dataTypeContent])
 

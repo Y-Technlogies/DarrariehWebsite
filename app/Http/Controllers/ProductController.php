@@ -20,7 +20,7 @@ class ProductController extends Controller
             $html .= '<div class="col-6 mb-3 px-0 '.$spaceBtween.'">
                          <a href="'.route('product.show', $product).'">
                             <div class="card">
-                                <img class="card-img-top" src="'.Voyager::image($product->getImage()[0]).'" alt="Card image cap">
+                                <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()).'" alt=" '.$product->getTranslatedAttribute('description').'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
                                         '.$product->getTranslatedAttribute('description').'
@@ -41,7 +41,7 @@ class ProductController extends Controller
         return view('product.index',compact('products'));
     }
 
-    public function show(Product $product)
+    public function show(Product $product, Request $request)
     {
         $dataType = Voyager::model('DataType')->where('slug', '=', 'products')->first();
 
@@ -50,7 +50,32 @@ class ProductController extends Controller
             $dataTypeContent = call_user_func([$model, 'findOrFail'], $product->id);
         }
 
-        $products = Product::all();
+        $products = Product::where('id', '!=' ,$product->id)->orderBy('created_at', 'desc')->paginate(6);
+        $html = '';
+        foreach ($products as $index => $product) {
+
+            $spaceBtween = ($index%2 == 0) ? 'pr-1 pl-0' : 'pr-0 pl-1';
+
+            $html .= '<div class="col-6 mb-3 px-0 '.$spaceBtween.'">
+                         <a href="'.route('product.show', $product).'">
+                            <div class="card">
+                                <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()).'" alt=" '.$product->getTranslatedAttribute('description').'">
+                                <div class="card-body @if($isArabic) text-right @endif">
+                                    <p class="card-text two-line mb-3">
+                                        '.$product->getTranslatedAttribute('description').'
+                                    </p>
+                                    <p class="card-text card-price mb-2">
+                                        '.$product->price .' '. __('product-detail.currency').'
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>';
+        }
+
+        if ($request->ajax())
+            return $html;
+
         return view('product.view',compact('dataType', 'dataTypeContent', 'products'));
     }
 }

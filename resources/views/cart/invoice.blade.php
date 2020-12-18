@@ -58,24 +58,24 @@
                         <span>{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
                     </p>
                 </div>
-                <img src="{{Voyager::image($product['image'])}}" class="w-25">
+                <img height="120" src="{{Voyager::image($product['image'])}}" class="w-25">
             @else
-            <img src="{{Voyager::image($product['image'])}}" class="w-25">
-            <div class="card-body">
-                <p class="card-text one-line mb-0">
-                    {{ productTranslation($product['product_id']) }}
-                </p>
-                <div class="card-text style mb-3">
-                    @php
-                        $color = \App\Color::find($product['product_color'])->first();
-                    @endphp
-                <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div> , {{ getSizeFromOption($product['product_size']) }}
+                <img height="120" src="{{Voyager::image($product['image'])}}" class="w-25">
+                <div class="card-body">
+                    <p class="card-text one-line mb-0">
+                        {{ productTranslation($product['product_id']) }}
+                    </p>
+                    <div class="card-text style mb-3">
+                        @php
+                            $color = \App\Color::find($product['product_color'])->first();
+                        @endphp
+                    <div class="badge badge-lg" style="background-color: {{ $color->code }}; width: 15px; height: 10px;">&nbsp;</div> , {{ getSizeFromOption($product['product_size']) }}
+                    </div>
+                    <p class="card-text d-flex justify-content-between text-center">
+                        <span>{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
+                        <span class="quantity text-gray">x{{ $product['quantity']}}</span>
+                    </p>
                 </div>
-                <p class="card-text d-flex justify-content-between text-center">
-                    <span>{{ $product['price'] }} {{ __('product-detail.currency') }}</span>
-                    <span class="quantity text-gray">x{{ $product['quantity']}}</span>
-                </p>
-            </div>
             @endif
         </div>
     @endforeach
