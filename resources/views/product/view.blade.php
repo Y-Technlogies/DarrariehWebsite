@@ -52,7 +52,7 @@
             <tbody>
             @foreach($dataType->readRows as $row)
 
-                @if(!in_array($row->field, ['price', 'images', 'description', 'created_at']))
+                @if(!in_array($row->field, ['price', 'images', 'description', 'created_at', 'season', 'style', 'pattern', 'clothing_noun', 'fabric']))
                     <tr>
                         @if($isArabic)
                             <td>
@@ -90,7 +90,7 @@
                             </td>
                         @else
                             <td>
-                                {{ $row->getTranslatedAttribute('display_name') }}
+                                {{ $row->getTranslatedAttribute('display_name') }}     {{ $status ?? '' }}
                             </td>
                             <td>
                                 @if($row->field === 'size')

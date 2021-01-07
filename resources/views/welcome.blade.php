@@ -53,7 +53,7 @@
                         if(data.length == 0){
                             console.log(data.length);
                             //notify user if nothing to load
-                            $('.loading').html('<span class="mx-auto d-block text-center">No more records</span>');
+                            $('.loading').html('<p class="mx-auto d-block text-center">&copy; <span>Copyright 2021 Y-Techonologies.</span></p>');
                             return;
                         }
                         $('.loading').hide();
@@ -61,7 +61,7 @@
                     })
                     .fail(function(jqXHR, ajaxOptions, thrownError)
                     {
-                        alert('No response from server');
+                       // alert('No response from server');
                     });
             }
         </script>

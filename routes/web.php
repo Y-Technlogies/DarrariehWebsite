@@ -46,9 +46,7 @@ Route::get('/cart/{id}',function ($id) {
 
 Route::post('/cart',function (CartRequest $request) {
 
-    $request->session()->forget('products');
     $product = [];
-
     if (!$request->session()->has('products')) {
         $product[0] = $request->except('_token');
     } else {
@@ -59,7 +57,8 @@ Route::post('/cart',function (CartRequest $request) {
     $request->session()->put('products', $product);
     $request->session()->put('products_count', sizeof($product));
 
-    return redirect()->route('product.show',$request->get('product_id'));
+   // return redirect()->route('product.show', $request->get('product_id'));
+    return view('product.confirm');
 
 })->name('cart.post');
 
@@ -93,7 +92,7 @@ Route::get('/cart-list', function (){
 Route::get('/cart-remove/{id}', function ($id){
 
     $products = Session::get('products');
-    $count = Session::get('product_count');
+    $count = Session::get('products_count');
     $total = Session::get('total');
 
     $total = $total - ($products[$id]['quantity'] * $products[$id]['price']);
@@ -102,7 +101,7 @@ Route::get('/cart-remove/{id}', function ($id){
 
     Session::put('total', $total);
     Session::put('products', $products);
-    Session::put('product_count', $count);
+    Session::put('products_count', $count);
 
     return redirect()->back();
 
