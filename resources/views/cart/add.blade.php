@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">{{ __('cart.quantity') }}</label>
-                        <input type="number" name="quantity" class="form-control @if(app()->getLocale() != 'en') text-right @endif" placeholder="0" value="{{ old('quantity') }}">
+                        <input type="number" name="quantity" class="form-control @if(app()->getLocale() != 'en') text-right @endif" placeholder="0" value="{{ old('quantity') ?: 1 }}">
                     </div>
                     <button class="btn btn-block btn-submit mb-2" type="submit">{{ __('cart.confirm') }}</button>
                 </form>

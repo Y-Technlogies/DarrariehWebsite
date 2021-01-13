@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ProductOffer;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
 
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
         Voyager::addAction(\App\Actions\OrderPaymentStatus::class);
         view()->composer('*',function($view) {
             $view->with('isArabic', $this->app->getLocale() === 'ar');
+        });
+
+        view()->composer('partials.offers', function ($view) {
+            $view->with('offers', ProductOffer::all());
         });
     }
 }

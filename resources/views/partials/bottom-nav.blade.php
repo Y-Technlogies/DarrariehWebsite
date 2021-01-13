@@ -23,9 +23,9 @@
                 </li>
                 <li class="nav-item px-3">
                     <a class="nav-link cart" href="{{ route('cart.list') }}"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>{{ __('bottom-nav.cart') }}</a>
-                    @if(Session::has('products_count') && Session::get('products_count') > 0)
+                    @if(Session::has('products') && Session::get('products_count') > 0)
                         <span class="d-block position-absolute text-center cart-count">
-                                <span>{{ Session::get('products_count') }}</span>
+                            <span>{{ Session::get('products_count') }}</span>
                         </span>
                     @endif
                 </li>

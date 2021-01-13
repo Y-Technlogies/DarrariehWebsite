@@ -217,6 +217,16 @@ body {
     text-shadow: 2px 1px 1px #e83e8c;
 }
 
+#header-navbar {
+    height: 70px;
+    background: rgb(0,0,0)!important;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 2%, rgba(228,46,46,1) 50%, rgba(252,176,69,1) 100%)!important;
+}
+
+.nav-link {
+    color: black;
+}
+
 .dropdown-toggle, .dropdown-toggle:hover {
-    color: #dc3545;
+    color: black;
 }
