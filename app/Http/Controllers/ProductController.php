@@ -23,7 +23,8 @@ class ProductController extends Controller
                                 <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()) .'" alt=" '.$product->getTranslatedAttribute('description').'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
-                                        Product Code : '.$product->product_code.'</br>
+                                        '.$product->product_code.' رمز المنتج : 
+                                        </br>
                                         '.$product->getTranslatedAttribute('description').'
                                     </p>                                    
                                     <p class="card-text card-price mb-2">
@@ -63,7 +64,8 @@ class ProductController extends Controller
                                 <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()).'" alt=" '.$product->getTranslatedAttribute('description').'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
-                                        Product Code : '.$product->product_code.'</br>
+                                        '.$product->product_code.'رمز المنتج : 
+                                        </br>
                                         '.$product->getTranslatedAttribute('description').'
                                     </p>
                                     <p class="card-text card-price mb-2">

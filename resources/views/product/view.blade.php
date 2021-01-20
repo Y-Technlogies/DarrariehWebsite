@@ -5,7 +5,7 @@
     <div class="row bg-white">
         <div id="carouselExampleIndicators" class="carousel slide col-sm-12 pl-0 pr-0" data-ride="carousel">
             <p class="carousel-overlay">
-               Product Code: <span>{{ $dataTypeContent->product_code }}</span>
+               <span>{{ $dataTypeContent->product_code }}</span>رمز المنتج :
             </p>
             <ol class="carousel-indicators">
                 @foreach($dataTypeContent->getImage() as $key=>$image)
