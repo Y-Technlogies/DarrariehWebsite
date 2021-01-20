@@ -11,20 +11,22 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(6);
+        $products = Product::orderBy('created_at', 'desc')->paginate(4);
         $html = '';
         foreach ($products as $index => $product) {
 
             $spaceBtween = ($index%2 == 0) ? 'pr-1 pl-0' : 'pr-0 pl-1';
 
-            $html .= '<div class="col-6 mb-3 px-0 '.$spaceBtween.'">
+            $html .= '<div class="col-6 mb-3 px-0 '.$spaceBtween.'">                        
                          <a href="'.route('product.show', $product).'">
                             <div class="card">
-                                <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()).'" alt=" '.$product->getTranslatedAttribute('description').'">
+                                <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()) .'" alt=" '.$product->getTranslatedAttribute('description').'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
+                                        '.$product->product_code.' رمز المنتج : 
+                                        </br>
                                         '.$product->getTranslatedAttribute('description').'
-                                    </p>
+                                    </p>                                    
                                     <p class="card-text card-price mb-2">
                                         '.$product->price .' '. __('product-detail.currency').'
                                     </p>
@@ -62,6 +64,8 @@ class ProductController extends Controller
                                 <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()).'" alt=" '.$product->getTranslatedAttribute('description').'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
+                                        '.$product->product_code.'رمز المنتج : 
+                                        </br>
                                         '.$product->getTranslatedAttribute('description').'
                                     </p>
                                     <p class="card-text card-price mb-2">
