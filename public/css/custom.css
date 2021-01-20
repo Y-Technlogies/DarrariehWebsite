@@ -230,3 +230,14 @@ body {
 .dropdown-toggle, .dropdown-toggle:hover {
     color: black;
 }
+
+.carousel-overlay {
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    padding: 5px;
+    left: 0;
+    width: auto;
+    height: 35px;
+}

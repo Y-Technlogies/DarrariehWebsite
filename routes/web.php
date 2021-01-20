@@ -4,8 +4,10 @@ use App\Customer;
 use App\Http\Requests\CartRequest;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use TCG\Voyager\Events\BreadDataChanged;
 
 /*
 |--------------------------------------------------------------------------
