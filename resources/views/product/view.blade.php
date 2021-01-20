@@ -4,6 +4,9 @@
 
     <div class="row bg-white">
         <div id="carouselExampleIndicators" class="carousel slide col-sm-12 pl-0 pr-0" data-ride="carousel">
+            <p class="carousel-overlay">
+               Product Code: <span>{{ $dataTypeContent->product_code }}</span>
+            </p>
             <ol class="carousel-indicators">
                 @foreach($dataTypeContent->getImage() as $key=>$image)
                     @if($key === 0)
@@ -41,7 +44,7 @@
         <div class="product-info w-100 @if($isArabic) text-right @endif">
             <span>{{ $dataTypeContent->getTranslatedAttribute('price') }} {{ __('product-detail.currency') }}</span>
             <p class="product-description">{{ $dataTypeContent->getTranslatedAttribute('description') }}
-                <span class="product-id">{{ $dataTypeContent->id }}</span>
+                {{--<span class="product-id">{{ $dataTypeContent->product_code }}</span>--}}
             </p>
         </div>
     </div>
@@ -135,3 +138,4 @@
 
     <div class="clearfix" style="height: 50px"></div>
 @stop
+

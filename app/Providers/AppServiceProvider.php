@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\FormFields\RandnumField;
+use App\Listeners\ProductAdded;
 use App\ProductOffer;
 use Illuminate\Support\ServiceProvider;
 use TCG\Voyager\Facades\Voyager;
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Voyager::addFormField(RandnumField::class);
     }
 
     /**
@@ -31,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('partials.offers', function ($view) {
-            $view->with('offers', ProductOffer::all());
+            $offers = ProductOffer::all();
+            $active = $offers->where('is_active', '1')->count();
+            $view->with(compact('offers', 'active'));
         });
     }
 }
