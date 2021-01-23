@@ -55,8 +55,12 @@
             </div>
             <div class="form-group">
                 <label for="inputAddress2">{{ __('cart.address') }}</label>
-                <textarea name="address" id="" cols="30" rows="10" class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}" placeholder="{{ __('placeholder.address') }}">
-                    {{ old('address') }}
+                <textarea name="address"
+                          id=""
+                          cols="30"
+                          rows="10"
+                          class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
+                          placeholder="{{ __('placeholder.address') }}">
                 </textarea>
             </div>
             <button type="submit" class="btn btn-block btn-submit mb">{{ __('cart.save') }}</button>
