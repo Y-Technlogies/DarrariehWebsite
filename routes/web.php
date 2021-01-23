@@ -4,10 +4,8 @@ use App\Customer;
 use App\Http\Requests\CartRequest;
 use App\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use TCG\Voyager\Events\BreadDataChanged;
 
 /*
 |--------------------------------------------------------------------------
@@ -114,7 +112,7 @@ Route::get('/checkout', function() {
     return view('cart.checkout');
 
 
-})->name('cart.checkout');
+})->name('cart.checkout')->middleware('cart.check');
 
 Route::get('/invoice', function () {
 
@@ -122,7 +120,7 @@ Route::get('/invoice', function () {
     $customer = Customer::find(Session::get('customer_id'));
 
     return view('cart.invoice', compact('products', 'customer'));
-});
+})->middleware('cart.check');
 
 //Route::get('/show-card', function () {
 //   return view('card.getway');

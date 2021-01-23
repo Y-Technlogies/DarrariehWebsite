@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Listeners\ProductAdded;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use TCG\Voyager\Events\BreadDataChanged;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,10 +16,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
-
-        BreadDataChanged::class => [
-            ProductAdded::class
         ]
     ];
 

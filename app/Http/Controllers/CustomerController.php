@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function store(CustomerRequest $request)
     {
-        $customer = new Customer();
+        $customer = Customer::firstOrCreate(['phone' => $request->get('phone')]);
         $customer->first_name = $request->get('first_name');
         $customer->last_name = $request->get('last_name');
         $customer->phone = $request->get('phone');
