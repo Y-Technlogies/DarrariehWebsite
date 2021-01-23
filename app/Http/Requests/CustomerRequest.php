@@ -26,7 +26,7 @@ class CustomerRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'phone' => 'required',
+            'phone' => ['required', 'regex:/^(?:\+965)?(?:50|51|52|55|56|2|3|4|6|7|9)\d{7}$/m'],
             'address' => 'required'
         ];
     }

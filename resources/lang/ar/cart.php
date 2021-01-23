@@ -6,13 +6,13 @@ return [
     'first_name' => 'إسم الأول',
     'last_name' => 'اسم الأخير',
     'phone' => 'رقم الهاتف',
-    'address' => 'العنوان',
+    'address' => 'ادخل عنوان الارسال',
     'product_total' => 'إجمالي المنتج',
     'order_total' => 'المجموع',
     'grand_total' => 'المجموع',
     'confirm_pay' => 'التأكيد و الدفع',
     'total' => 'إجمالي',
-    'checkout' => 'التأكيد',
+    'checkout' => 'إتمام الشراء',
     'go_to_home' => 'رجوع',
     'size' => 'القالب',
     'color' => 'اللون',
@@ -21,5 +21,6 @@ return [
     'order_success' => 'نجاح الطلب تم وضع الطلب بنجاح',
     'product_size' => 'حجم المنتج',
     'product_color' => 'حجم المنتج',
+    'continue_shoping' => 'متابعة التسوق'
 
 ];

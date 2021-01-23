@@ -1,4 +1,5 @@
 <?php
         return [
-            'required' => ':attribute is required'
+            'required' => ':attribute is required',
+            'regex' => 'Invalid phone number'
         ];
