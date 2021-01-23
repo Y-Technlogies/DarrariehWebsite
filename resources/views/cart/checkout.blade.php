@@ -9,18 +9,18 @@
                 <div class="form-group col">
                     <label for="inputEmail4">{{ __('cart.first_name') }}</label>
                     <input type="text" name="first_name" class="form-control @if(app()->getLocale() === 'en') text-left @else text-right @endif" id="inputEmail4"
-                    placeholder="{{(app()->getLocale() === 'ar') ?: __('placeholder.first_name') }}">
+                    placeholder="{{(app()->getLocale() === 'ar') ? __('placeholder.first_name') : '' }}">
                 </div>
                 <div class="form-group col">
                     <label for="inputPassword4">{{ __('cart.last_name') }}</label>
                     <input type="text" name="last_name" class="form-control @if(app()->getLocale() === 'en') text-left @else text-right @endif" id="inputPassword4"
-                   placeholder="{{(app()->getLocale() === 'ar') ?: __('placeholder.last_name') }}">
+                   placeholder="{{(app()->getLocale() === 'ar') ? __('placeholder.last_name') : '' }}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">{{ __('cart.phone') }}</label>
                 <input type="text" name="phone" class="form-control @if(app()->getLocale() === 'en') text-left @else text-right @endif" id="inputAddress"
-                placeholder="{{(app()->getLocale() === 'ar') ?: __('placeholder.phone') }}">
+                placeholder="{{(app()->getLocale() === 'ar') ? __('placeholder.phone') : '' }}">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">{{ __('cart.address') }}</label>
