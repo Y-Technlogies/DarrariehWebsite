@@ -12,8 +12,8 @@
                         <input type="text" name="first_name"
                                class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
                                id="inputEmail4"
-                               placeholder="{{($isArabic) ? __('placeholder.first_name') : '' }}"
-                               value="{{ old('first_name') }}">
+                               placeholder="{{ __('placeholder.first_name')}}"
+                               value="{{ !$errors->has('first_name') ? old('first_name') : '' }}">
                     </div>
                     <div class="form-group col">
                         <label for="inputPassword4">{{ __('cart.last_name') }}</label>
@@ -21,8 +21,8 @@
                                name="last_name"
                                class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
                                id="inputPassword4"
-                               placeholder="{{($isArabic) ? __('placeholder.last_name') : '' }}"
-                               value="{{ old('last_name') }}">
+                               placeholder="{{ __('placeholder.last_name') }}"
+                               value="{{ !$errors->has('last_name') ? old('last_name') : '' }}">
                     </div>
                 @else
                     <div class="form-group col">
@@ -31,16 +31,16 @@
                                name="last_name"
                                class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
                                id="inputPassword4"
-                               placeholder="{{($isArabic) ? __('placeholder.last_name') : '' }}"
-                               value="{{ old('last_name') }}">
+                               placeholder="{{ __('placeholder.last_name') }}"
+                               value="{{ !$errors->has('last_name') ? old('last_name') : '' }}">
                     </div>
                     <div class="form-group col">
                         <label for="inputEmail4">{{ __('cart.first_name') }}</label>
                         <input type="text" name="first_name"
                                class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
                                id="inputEmail4"
-                               placeholder="{{($isArabic) ? __('placeholder.first_name') : '' }}"
-                               value="{{ old('first_name') }}">
+                               placeholder="{{ __('placeholder.first_name')}}"
+                               value="{{ !$errors->has('first_name') ? old('first_name') : '' }}">
                     </div>
                 @endif
             </div>
@@ -50,18 +50,17 @@
                        name="phone"
                        class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
                        id="inputAddress"
-                       placeholder="{{($isArabic) ? __('placeholder.phone') : '' }}"
-                       value="{{ old('phone') }}">
+                       placeholder="{{ __('placeholder.phone') }}"
+                       value="{{ !$errors->has('phone') ? old('phone') : '' }}">
             </div>
             <div class="form-group">
                 <label for="inputAddress2">{{ __('cart.address') }}</label>
                 <textarea name="address"
-                          id=""
+                          id="address"
                           cols="30"
                           rows="10"
                           class="form-control {{ (!$isArabic) ? 'text-left' : 'text-right' }}"
-                          placeholder="{{ __('placeholder.address') }}">
-                </textarea>
+                          placeholder="{{ __('placeholder.address') }}">{{ !$errors->has('address') ? old('address') : '' }}</textarea>
             </div>
             <button type="submit" class="btn btn-block btn-submit mb">{{ __('cart.save') }}</button>
         </form>
