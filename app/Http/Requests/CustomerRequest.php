@@ -30,4 +30,15 @@ class CustomerRequest extends FormRequest
             'address' => 'required'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'first_name.required' => trans('validation.required', ['attribute' => __('cart.first_name')]),
+            'last_name.required' => trans('validation.required', ['attribute' => __('cart.last_name')]),
+            'phone.required' => trans('validation.required', ['attribute' => __('cart.phone')]),
+            //'phone.regex' => trans('validation.regex', ['attribute' => __('cart.phone')]),
+            'address.required' => trans('validation.required', ['attribute' => __('cart.address')]),
+        ];
+    }
 }
