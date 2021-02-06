@@ -9,7 +9,11 @@ $factory->define(\App\Product::class, function (Faker $faker) {
     return [
         'description' => $faker->text(25),
         'price' => $faker->randomNumber(5),
-        'images' => "[\"products/106579888_742647636504237_7955856466431444308_n.jpg\"]",
-        'size' => "{\"1\":\"1\",\"2\":\"2\",\"3\":\"3\",\"4\":\"4\"}"
+        'images' => function() use ($faker) {
+            return "[products\\".$faker->image(storage_path('app/public/products'), 200,200, null ,false)."]";
+        },
+        'size' => "{\"1\":\"1\",\"2\":\"2\",\"3\":\"3\",\"4\":\"4\"}",
+        'product_code' => rand(10000, 99999),
+        'suitable_age' => rand(0,100)
     ];
 });
