@@ -60,7 +60,7 @@
                         @if($isArabic)
                             <td>
                                 @if($row->field === 'size')
-                                    @if (@count(json_decode($dataTypeContent->{$row->field})) > 0)
+                                    @if (is_array($dataTypeContent->{$row->field}) && @count(json_decode($dataTypeContent->{$row->field}, true)) > 0)
                                         @foreach(json_decode($dataTypeContent->{$row->field}) as $item)
                                             @if (@$row->details->options->{$item})
                                                 {{ $row->details->options->{$item} . (!$loop->last ? ', ' : '') }}
