@@ -6,14 +6,14 @@
                 <div class="carousel-item @if($key === 0) active @endif">
                     <img class="d-block w-100" src="@if($offer->cover){{ Voyager::image($offer->cover) }} @else {{ asset('img/offer.png') }} @endif" height="200" alt="First slide">
                     <div class="carousel-caption d-md-block">
-                        <p style="color: {{ $offer->title_description_color }}">{{ $offer->description }}</p>
+                        <p style="color: {{ $offer->title_description_color }}">{!! $offer->description !!}</p>
                     </div>
                 </div>
             @else
                 <div class="carousel-item @if($offer->is_active) active @endif">
                     <img class="d-block w-100" src="@if($offer->cover){{ Voyager::image($offer->cover) }} @else {{ asset('img/offer.png') }} @endif" height="200" alt="First slide">
                     <div class="carousel-caption d-md-block">
-                        <p style="color: {{ $offer->title_description_color }}">{{ $offer->description }}</p>
+                        <p style="color: {{ $offer->title_description_color }}">{!! $offer->description !!}</p>
                     </div>
                 </div>
             @endif
