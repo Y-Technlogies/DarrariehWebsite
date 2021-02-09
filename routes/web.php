@@ -87,7 +87,7 @@ Route::get('/cart-list', function (){
 
     return view('cart.list', compact('products'));
 
-})->name('cart.list');
+})->name('cart.list')->middleware('cart.check');
 
 Route::get('/cart-remove/{id}', function ($id){
 
