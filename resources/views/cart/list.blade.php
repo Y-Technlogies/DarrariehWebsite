@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-    @if(@count($products) > 0)
+    @if(isset($products) && @count($products) > 0)
         @foreach($products as $key=>$product)
             @if($isArabic)
                 <div class="border-bottom-0 card d-flex flex-row mt-3 cart-list margin-fix">
@@ -56,7 +56,7 @@
             <ul class="navbar-nav text-center">
                 @if($isArabic)
                     <li class="nav-item add-to-cart py-1">
-                        @if(@count($products) > 0)
+                        @if(isset($products) && @count($products) > 0)
                             <a class="nav-link font-weight-bold" href="{{ route('cart.checkout') }}">{{ __('cart.checkout') }}</a>
                         @else
                             <a class="nav-link font-weight-bold" href="{{ url('/') }}">{{ __('cart.go_to_home') }}</a>
@@ -70,7 +70,7 @@
                       {{ __('cart.total') }} : <span class="pl-1">{{ Session::get('total') }} {{ __('product-detail.currency') }}</span>
                     </li>
                     <li class="nav-item add-to-cart py-1">
-                        @if(@count($products) > 0)
+                        @if(isset($products) && @count($products) > 0)
                             <a class="nav-link font-weight-bold" href="{{ route('cart.checkout') }}">{{ __('cart.checkout') }}</a>
                         @else
                             <a class="nav-link font-weight-bold" href="{{ url('/') }}">{{ __('cart.go_to_home') }}</a>

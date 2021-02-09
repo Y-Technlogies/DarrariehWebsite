@@ -36,7 +36,7 @@
                         <label for="exampleFormControlInput1">{{ __('cart.size') }}</label> <br/>
                         @foreach($dataType->readRows as $row)
                             @if($row->field === 'size')
-                                @if (@count(json_decode($dataTypeContent->size)) > 0)
+                                @if (@count(json_decode($dataTypeContent->{$row->field}, true)) > 0)
                                         @foreach(json_decode($dataTypeContent->size) as $item)
                                             @if ($row->details->options->{$item})
                                                 <div class="form-check form-check-inline">
