@@ -11,11 +11,12 @@
 </div>
 
 <style>
+    #whatsapp {
+        background-image: url('{{ asset('img/whatsapp-background.jpg') }}');
+    }
     #whatsapp a {
         text-align: center;
-        background-image: url('{{ asset('img/whatsapp-background.jpg') }}');
         margin: auto;
-        border-radius: 28%;
     }
 
     #whatsapp a i{
@@ -23,7 +24,7 @@
         vertical-align: middle;
     }
 
-    #whatsapp a p {
+    #whatsapp a p, #whatsapp p {
         color: lightcyan;
     }
 </style>
