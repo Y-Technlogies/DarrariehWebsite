@@ -1,7 +1,7 @@
 @extends('welcome')
 
 @section('content')
-    <div class="row bg-white p-2 row">
+    <div class="row bg-white p-2">
         @include('partials.frontend.validation')
         <form method="post" action="{{ route('customer.store') }}" class="@if(app()->getLocale() === 'en') text-left @else text-right @endif">
             {{ csrf_field() }}
@@ -65,46 +65,13 @@
             <button type="submit" class="btn btn-block btn-submit mb">{{ __('cart.save') }}</button>
         </form>
 
-        <table class="table table-striped">
-            <thead>
-                <td>Product Size</td>
-                <td>Shoulder</td>
-                <td>Bust/Chest</td>
-                <td>Sleeve</td>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>S</td>
-                    <td>34</td>
-                    <td>84</td>
-                    <td>16</td>
-                </tr>
-                <tr>
-                    <td>M</td>
-                    <td>35</td>
-                    <td>88</td>
-                    <td>17</td>
-                </tr>
-                <tr>
-                    <td>L</td>
-                    <td>36</td>
-                    <td>92</td>
-                    <td>18</td>
-                </tr>
-                <tr>
-                    <td>XL</td>
-                    <td>37</td>
-                    <td>96</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>XXL</td>
-                    <td>38</td>
-                    <td>100</td>
-                    <td>20</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-12">
+                <img class="img-fluid" src="{{ asset('img/size-chart.jpg') }}" alt="size-chart">
+            </div>
+        </div>
+
+
     </div>
 
 @stop
