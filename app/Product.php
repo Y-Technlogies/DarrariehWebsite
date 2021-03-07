@@ -16,6 +16,9 @@ class Product extends Model
 
     public function getImage()
     {
+        if (!preg_match('/\.([Jj][Pp][Ee]?[Gg]|[Pp][Nn][Gg]|[Gg][Ii][Ff])/m', $this->images))
+            return ['logo.png'];
+
         return sizeof(json_decode($this->images)) > 0 ? json_decode($this->images) : $this->images;
     }
 
