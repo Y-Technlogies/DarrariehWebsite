@@ -5,30 +5,34 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use TCG\Voyager\Facades\Voyager;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(4);
+        //$products = Product::orderBy('created_at', 'desc')->paginate(4);
+
+        $products = Http::get('http://darraieh.test/api/products')->throw()->json();
+
         $html = '';
-        foreach ($products as $index => $product) {
+        foreach ($products['data'] as $index => $product) {
 
             $spaceBtween = ($index%2 == 0) ? 'pr-1 pl-0' : 'pr-0 pl-1';
 
             $html .= '<div class="col-6 mb-3 px-0 '.$spaceBtween.'">                        
-                         <a href="'.route('product.show', $product).'">
+                         <a href="'.route('product.show', $product['id']).'">
                             <div class="card">
-                                <img class="card-img-top" height="200" src="'.Voyager::image($product->getCover()) .'" alt=" '.$product->getTranslatedAttribute('description').'">
+                                <img class="card-img-top" height="200" src="'.Voyager::image($product['images'][0]) .'" alt=" '.$product['description'].'">
                                 <div class="card-body @if($isArabic) text-right @endif">
                                     <p class="card-text two-line mb-3">
-                                        '.$product->product_code.' : رمز المنتج 
+                                        '.$product['product_code'].' : رمز المنتج 
                                         </br>
-                                        '.$product->getTranslatedAttribute('description').'
+                                        '.$product['description'].'
                                     </p>                                    
                                     <p class="card-text card-price mb-2">
-                                        '.$product->price .' '. __('product-detail.currency').'
+                                        '.$product['price'] .' '. __('product-detail.currency').'
                                     </p>
                                 </div>
                             </div>
