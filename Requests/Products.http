@@ -1,0 +1,66 @@
+GET http://darraieh.test/api/products
+
+###
+
+GET http://darraieh.test/api/products?page=3
+
+###
+
+GET http://darraieh.test/api/product/1000
+
+###
+
+POST http://darraieh.test/api/checkout
+Content-Type: application/json
+
+{
+  "cart":[
+    {
+      "id":13,
+      "title":"Cotton",
+      "price":18,
+      "imageUrl":"https:\/\/darrarieh.shop\/storage\/products\/IMG_20200915_132601_1.jpg",
+      "suitableAge":"10 to 99",
+      "size":"{\"1\":\"1\",\"2\":\"2\",\"3\":\"3\",\"4\":\"4\"}",
+      "style":[
+        {
+          "id":1,
+          "code":"#000000",
+          "label":"Black",
+          "created_at":"2020-09-22T22:57:18.000000Z",
+          "updated_at":"2020-09-22T22:57:18.000000Z",
+          "pivot":
+          {
+            "product_id":13,
+            "color_id":1
+          }
+        }
+      ],
+      "quantity":1,
+      "isChecked":false,
+      "selectedSize":"1",
+      "selectedColor":
+      {
+        "id":1,
+        "code":"#000000",
+        "label":"Black",
+        "created_at":"2020-09-22T22:57:18.000000Z",
+        "updated_at":"2020-09-22T22:57:18.000000Z",
+        "pivot":
+        {
+          "product_id":13,
+          "color_id":1
+        }
+      }
+    }
+  ],
+  "customer":
+  {
+    "firstName":"Api Test",
+    "lastName":"Tmi",
+    "phone":"Tmi",
+    "address":"Tmi"
+  }
+}
+
+###

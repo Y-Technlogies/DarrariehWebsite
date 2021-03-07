@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Resources\OfferCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/products', 'ApiProductController@getProducts')->name('product.all');
+Route::get('/product/{id}', 'ApiProductController@getProduct');
+Route::get('/offers', function (){
+   return new OfferCollection(\App\ProductOffer::all());
 });
+
+Route::post('/checkout', 'PaymentController@apiPay');
