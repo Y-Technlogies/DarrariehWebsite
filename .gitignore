@@ -26,3 +26,5 @@ yarn-error.log
 error_log
 phpinfo.php
 /public/error_log
+
+*.log

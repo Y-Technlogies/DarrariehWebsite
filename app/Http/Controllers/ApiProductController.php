@@ -12,7 +12,7 @@ class ApiProductController extends Controller
 {
     public function getProducts(Request $request)
     {
-        return new ProductCollection(ProductModel::orderBy('id', 'desc')->paginate(6));
+        return new ProductCollection(ProductModel::orderBy('id', 'desc')->with('color')->paginate(6));
     }
 
     public function getProduct(Request $request)
