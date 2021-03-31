@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use App\FormFields\RandnumField;
-use App\Listeners\ProductAdded;
 use App\ProductOffer;
-use Illuminate\Support\ServiceProvider;
+use App\Listeners\ProductAdded;
+use App\FormFields\RandnumField;
 use TCG\Voyager\Facades\Voyager;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        JsonResource::withoutWrapping();
         Voyager::addAction(\App\Actions\OrderPaymentStatus::class);
         view()->composer('*',function($view) {
             $view->with('isArabic', $this->app->getLocale() === 'ar');
