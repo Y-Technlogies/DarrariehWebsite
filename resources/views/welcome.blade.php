@@ -18,17 +18,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Lemonada&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-
-
-	<!-- Global site tag (gtag.js) - Google Analytics --> 
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-188053691-1"></script>
-		<script>   
-			window.dataLayer = window.dataLayer || [];   
-			function gtag(){dataLayer.push(arguments);}   
-			gtag('js', new Date());    
-			gtag('config', 'UA-188053691-1');
-		</script>
     </head>
     <body>
         <div class="container-fluid full-screen-fix">
