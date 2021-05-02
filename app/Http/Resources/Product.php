@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends JsonResource
 {
@@ -19,7 +20,10 @@ class Product extends JsonResource
             'description' => $this->getTranslatedAttribute('description', 'ar'),
             'price' => $this->price,
             'images' =>  array_map(function ($image) {
-                return $this->getThumbnail($image, 'resize-500');
+
+                $path = Storage::disk(config('voyager.storage.disk'))->path($this->getThumbnail($image, 'resize-500'));
+                return file_exists($path) ?  $this->getThumbnail($image, 'resize-500') : $image;
+
             }, $this->getImage()),
             'suitable_age' => $this->suitable_age,
             'size' => $this->size,
