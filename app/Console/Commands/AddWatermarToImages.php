@@ -7,21 +7,23 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
-class AddWatermarToImages extends Command
-{
+class AddWatermarToImages extends Command {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'watermark:add';
+    protected $signature = 'make:watermark {arg}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Add watermark to exsisting image';
+    protected $description = 'Add watermark to existing image';
+
+
+    private $watermark;
 
     /**
      * Create a new command instance.
@@ -31,6 +33,7 @@ class AddWatermarToImages extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->watermark = Image::make(Storage::disk(config('voyager.storage.disk'))->path(config('voyager.media.watermark.source')));
     }
 
     /**
@@ -40,24 +43,75 @@ class AddWatermarToImages extends Command
      */
     public function handle()
     {
-        $watermark = Image::make(Storage::disk(config('voyager.storage.disk'))->path(config('voyager.media.watermark.source')));
+        switch ($this->argument('arg')) {
+            case 'all':
+                $this->info('applying to all');
+                break;
+            case file_exists(Storage::disk(config('voyager.storage.disk'))->path($this->argument('arg'))) :
+                $this->info('applying on selected file');
+                $this->onSingleFile();
+                break;
+            case preg_match('/^(?:resize-)+\d+$/m', $this->argument('arg')) == 1:
+                $this->info('applying on selected thumbnails');
+                $this->onThumbnailis();
+                break;
+            default:
+                $this->info('Error!!');
+                break;
 
+        }
+    }
+
+    private function onSingleFile()
+    {
+        $imagePath = Storage::disk(config('voyager.storage.disk'))->path($this->argument('arg'));
+
+        if (file_exists($imagePath)) {
+            $this->line($imagePath);
+            $image = Image::make($imagePath);
+            $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
+
+            $image->save($imagePath);
+        }
+    }
+
+    private function onThumbnailis()
+    {
         $products = Product::cursor();
 
-        $products->each(function ($product) use ($watermark) {
+        $products->each(function ($product) {
 
-           $imagePath = Storage::disk(config('voyager.storage.disk'))->path($product->getCover());
+            $images = json_decode($product->images);
+            foreach ($images as $image)
+            {
+                $imagePath = Storage::disk(config('voyager.storage.disk'))->path($product->getThumbnail($image, $this->argument('arg')));
 
-           if (file_exists($imagePath)) {
-               $this->line($imagePath);
-               $image = Image::make($imagePath);
-               $image->insert($watermark,
-                   config('voyager.media.watermark.position'),
-                   config('voyager.media.watermark.x'),
-                   config('voyager.media.watermark.y'));
+                if (file_exists($imagePath)) {
+                    $this->line($imagePath);
+                    $image = Image::make($imagePath);
+                    $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
 
-               $image->save($imagePath);
-           }
+                    $image->save($imagePath);
+                }
+            }
+        });
+    }
+
+    private function allImages()
+    {
+        $products = Product::cursor();
+
+        $products->each(function ($product) {
+
+            $imagePath = Storage::disk(config('voyager.storage.disk'))->path($product->getCover());
+
+            if (file_exists($imagePath)) {
+                $this->line($imagePath);
+                $image = Image::make($imagePath);
+                $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
+
+                $image->save($imagePath);
+            }
         });
     }
 }
