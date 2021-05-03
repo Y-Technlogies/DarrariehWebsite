@@ -46,6 +46,7 @@ class AddWatermarToImages extends Command {
         switch ($this->argument('arg')) {
             case 'all':
                 $this->info('applying to all');
+                $this->allImages();
                 break;
             case file_exists(Storage::disk(config('voyager.storage.disk'))->path($this->argument('arg'))) :
                 $this->info('applying on selected file');
@@ -85,14 +86,7 @@ class AddWatermarToImages extends Command {
             foreach ($images as $image)
             {
                 $imagePath = Storage::disk(config('voyager.storage.disk'))->path($product->getThumbnail($image, $this->argument('arg')));
-
-                if (file_exists($imagePath)) {
-                    $this->line($imagePath);
-                    $image = Image::make($imagePath);
-                    $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
-
-                    $image->save($imagePath);
-                }
+                $this->addWaterMark($imagePath);
             }
         });
     }
@@ -102,16 +96,18 @@ class AddWatermarToImages extends Command {
         $products = Product::cursor();
 
         $products->each(function ($product) {
-
             $imagePath = Storage::disk(config('voyager.storage.disk'))->path($product->getCover());
-
-            if (file_exists($imagePath)) {
-                $this->line($imagePath);
-                $image = Image::make($imagePath);
-                $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
-
-                $image->save($imagePath);
-            }
+            $this->addWaterMark($imagePath);
         });
+    }
+
+    private function addWaterMark($imagePath)
+    {
+        if (file_exists($imagePath)) {
+            $this->line($imagePath);
+            $image = Image::make($imagePath);
+            $image->insert($this->watermark, config('voyager.media.watermark.position'), config('voyager.media.watermark.x'), config('voyager.media.watermark.y'));
+            $image->save($imagePath);
+        }
     }
 }
