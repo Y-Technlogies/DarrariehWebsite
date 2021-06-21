@@ -46,8 +46,8 @@
                     <table class="table table-responsive">
                         <thead>
                         <th width="10%">Image</th>
-                        <th width="40%">Product</th>
-                        <th>Size</th>
+                        <th width="30%">Product</th>
+                        <th width="40%">Size</th>
                         <th>Color</th>
                         <th>Unite Price</th>
                         <th>Quantity</th>
@@ -69,7 +69,7 @@
                                 @if ($order->size)
                                     <td>{{ getSizeFromOption($order->size) }}</td>
                                 @elseif($order->custom_size)
-                                    <td>{{ $order->custom_size }}</td>
+                                    <td style="word-break: break-all">{{ $order->custom_size }}</td>
                                 @else
                                     <td>Not selected</td>
                                 @endif
