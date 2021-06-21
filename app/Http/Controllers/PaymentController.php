@@ -173,6 +173,7 @@ class PaymentController extends Controller
             $orderLine->order_id = $order->id;
             $orderLine->color = $product['selectedColor']['id'];
             $orderLine->size = $product['selectedSize'];
+            $orderLine->custom_size = $product['sizeDetails'];
             $orderLine->save();
         }
 

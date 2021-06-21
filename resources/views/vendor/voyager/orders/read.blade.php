@@ -4,7 +4,8 @@
 
 @section('page_header')
     <h1 class="page-title">
-        <i class="{{ $dataType->icon }}"></i> {{ __('voyager::generic.viewing') }} {{ ucfirst($dataType->getTranslatedAttribute('display_name_singular')) }} &nbsp;
+        <i class="{{ $dataType->icon }}"></i> {{ __('voyager::generic.viewing') }} {{ ucfirst($dataType->getTranslatedAttribute('display_name_singular')) }}
+        &nbsp;
 
         @can('edit', $dataTypeContent)
             <a href="{{ route('voyager.'.$dataType->slug.'.edit', $dataTypeContent->getKey()) }}" class="btn btn-info">
@@ -14,12 +15,17 @@
         @endcan
         @can('delete', $dataTypeContent)
             @if($isSoftDeleted)
-                <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}" title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore" data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
-                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
+                <a href="{{ route('voyager.'.$dataType->slug.'.restore', $dataTypeContent->getKey()) }}"
+                   title="{{ __('voyager::generic.restore') }}" class="btn btn-default restore"
+                   data-id="{{ $dataTypeContent->getKey() }}" id="restore-{{ $dataTypeContent->getKey() }}">
+                    <i class="voyager-trash"></i> <span
+                            class="hidden-xs hidden-sm">{{ __('voyager::generic.restore') }}</span>
                 </a>
             @else
-                <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete" data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
-                    <i class="voyager-trash"></i> <span class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
+                <a href="javascript:;" title="{{ __('voyager::generic.delete') }}" class="btn btn-danger delete"
+                   data-id="{{ $dataTypeContent->getKey() }}" id="delete-{{ $dataTypeContent->getKey() }}">
+                    <i class="voyager-trash"></i> <span
+                            class="hidden-xs hidden-sm">{{ __('voyager::generic.delete') }}</span>
                 </a>
             @endif
         @endcan
@@ -39,39 +45,47 @@
                 <div class="panel">
                     <table class="table table-responsive">
                         <thead>
-                            <th width="10%">Image</th>
-                            <th width="40%">Product</th>
-                            <th>Size</th>
-                            <th>Color</th>
-                            <th>Unite Price</th>
-                            <th>Quantity</th>
-                            <th>Line Total</th>
+                        <th width="10%">Image</th>
+                        <th width="40%">Product</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Unite Price</th>
+                        <th>Quantity</th>
+                        <th>Line Total</th>
                         </thead>
                         <tbody>
-                            @foreach($orderLine as $order)
-                                <tr>
-                                    <td>
+                        @foreach($orderLine as $order)
+                            <tr>
+                                <td>
                                     @php
                                         $image = json_decode($order->images, true);
                                     @endphp
-                                        <img class="img-responsive"
-                                             src="{{ filter_var($image[0], FILTER_VALIDATE_URL) ? $image[0] : Voyager::image($image[0]) }}">
-                                    </td>
-                                    <td><a href="{{ route('voyager.products.show', $order->product_id) }}">{{ $order->description }}</a></td>
+                                    <img class="img-responsive"
+                                         src="{{ filter_var($image[0], FILTER_VALIDATE_URL) ? $image[0] : Voyager::image($image[0]) }}">
+                                </td>
+                                <td>
+                                    <a href="{{ route('voyager.products.show', $order->product_id) }}">{{ $order->description }}</a>
+                                </td>
+                                @if ($order->size)
                                     <td>{{ getSizeFromOption($order->size) }}</td>
+                                @else if($order->custom_size)
+                                    <td>{{ $order->customer_size }}</td>
+                                @else
+                                    <td>Not selected</td>
+                                @endif
                                     <td>{{ App\Color::find($order->color)->first()->label }}</td>
                                     <td>{{ $order->price }}</td>
                                     <td>{{ $order->quantity }}</td>
                                     <td>{{ $order->quantity * $order->price }}</td>
-                                </tr>
-                            @endforeach
-                                <tr>
-                                    <td colspan="5">Grand Total :</td>
-                                    <td>{{ array_sum(array_column($orderLine, 'quantity')) }}</td>
-                                    <td>{{ array_sum(array_map(function($element){
+                            </tr>
+                        @endforeach
+                        <tr>
+                            <td colspan="5">Grand Total :</td>
+                            <td>{{ array_sum(array_column($orderLine, 'quantity')) }}</td>
+                            <td>{{ array_sum(array_map(function($element){
                                         return $element->quantity * $element->price;
                                     }, $orderLine)) }}</td>
-                                </tr>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -146,7 +160,8 @@
                                     {{ $dataTypeContent->{$row->field} }}
                                 @endif
                             @elseif($row->type == 'color')
-                                <span class="badge badge-lg" style="background-color: {{ $dataTypeContent->{$row->field} }}">{{ $dataTypeContent->{$row->field} }}</span>
+                                <span class="badge badge-lg"
+                                      style="background-color: {{ $dataTypeContent->{$row->field} }}">{{ $dataTypeContent->{$row->field} }}</span>
                             @elseif($row->type == 'coordinates')
                                 @include('voyager::partials.coordinates')
                             @elseif($row->type == 'rich_text_box')
@@ -180,13 +195,17 @@
         </div>
     </div>
 
-     {{--Single delete modal--}}
+    {{--Single delete modal--}}
     <div class="modal modal-danger fade" tabindex="-1" id="delete_modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}?</h4>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="{{ __('voyager::generic.close') }}"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><i
+                                class="voyager-trash"></i> {{ __('voyager::generic.delete_question') }} {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}
+                        ?</h4>
                 </div>
                 <div class="modal-footer">
                     <form action="{{ route('voyager.'.$dataType->slug.'.index') }}" id="delete_form" method="POST">
@@ -195,7 +214,8 @@
                         <input type="submit" class="btn btn-danger pull-right delete-confirm"
                                value="{{ __('voyager::generic.delete_confirm') }} {{ strtolower($dataType->getTranslatedAttribute('display_name_singular')) }}">
                     </form>
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-default pull-right"
+                            data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
