@@ -68,7 +68,7 @@
                                 </td>
                                 @if ($order->size)
                                     <td>{{ getSizeFromOption($order->size) }}</td>
-                                @else if($order->custom_size)
+                                @elseif($order->custom_size)
                                     <td>{{ $order->customer_size }}</td>
                                 @else
                                     <td>Not selected</td>
